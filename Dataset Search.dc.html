@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#0b57d0"></rect><g transform="translate(120,120)" fill="none" stroke="#d3e3fd" stroke-width="14" stroke-linecap="round"><ellipse cx="70" cy="34" rx="62" ry="26"></ellipse><path d="M8 34v56c0 14 28 26 62 26s62-12 62-26V34"></path><path d="M8 90v40c0 14 28 26 62 26s62-12 62-26V90"></path></g></svg></template>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,75..125,100..1000&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'Roboto Flex',system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:#fff}
+body:has([data-theme="dark"]){background:#131314}
+input,button,textarea{font-family:inherit}
+button{border:none;background:none;padding:0;cursor:pointer}
+::placeholder{color:var(--on-surf-var);opacity:1}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-thumb{background:var(--outline-var);border-radius:10px;border:3px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-track{background:transparent}
+:root{
+--surface:#ffffff;--surf-1:#f8fafd;--surf-2:#f0f4f9;--surf-3:#e9eef6;--surf-4:#dde3ea;
+--on-surf:#1f1f1f;--on-surf-var:#444746;--outline:#747775;--outline-var:#dadce0;
+--primary:#0b57d0;--on-primary:#ffffff;--prim-cont:#d3e3fd;--on-prim-cont:#041e49;
+--sec-cont:#c2e7ff;--on-sec-cont:#001d35;--tert:#146c2e;--tert-cont:#c4eed0;--on-tert-cont:#072711;
+--error:#b3261e;--warn-cont:#fde293;--on-warn-cont:#3f2e04;
+--state:rgba(31,31,31,.06);--scrim:rgba(0,0,0,.32);
+--sh-1:0 1px 2px rgba(60,64,67,.14),0 1px 3px 1px rgba(60,64,67,.06);
+--sh-2:0 1px 3px rgba(60,64,67,.16),0 4px 8px 3px rgba(60,64,67,.08);
+--sh-3:0 4px 10px 3px rgba(60,64,67,.10),0 2px 4px rgba(60,64,67,.18);
+}
+[data-theme="dark"]{
+--surface:#131314;--surf-1:#1b1b1b;--surf-2:#1e1f20;--surf-3:#282a2c;--surf-4:#333537;
+--on-surf:#e3e3e3;--on-surf-var:#c4c7c5;--outline:#8e918f;--outline-var:#444746;
+--primary:#a8c7fa;--on-primary:#062e6f;--prim-cont:#0842a0;--on-prim-cont:#d3e3fd;
+--sec-cont:#004a77;--on-sec-cont:#c2e7ff;--tert:#6dd58c;--tert-cont:#0f5223;--on-tert-cont:#c4eed0;
+--error:#f2b8b5;--warn-cont:#6c4f00;--on-warn-cont:#ffdf99;
+--state:rgba(227,227,227,.08);--scrim:rgba(0,0,0,.5);
+--sh-1:0 1px 2px rgba(0,0,0,.5);--sh-2:0 2px 6px 2px rgba(0,0,0,.45);--sh-3:0 4px 12px 4px rgba(0,0,0,.5);
+}
+[data-seed="green"]{--primary:#146c2e;--prim-cont:#c4eed0;--on-prim-cont:#072711;--sec-cont:#d7f2dd;--on-sec-cont:#0a2e16}
+[data-theme="dark"][data-seed="green"]{--primary:#6dd58c;--on-primary:#0a3818;--prim-cont:#0f5223;--on-prim-cont:#c4eed0;--sec-cont:#12401f;--on-sec-cont:#c4eed0}
+[data-seed="violet"]{--primary:#6750a4;--prim-cont:#e9ddff;--on-prim-cont:#22005d;--sec-cont:#e8def8;--on-sec-cont:#1d192b}
+[data-theme="dark"][data-seed="violet"]{--primary:#cfbcff;--on-primary:#381e72;--prim-cont:#4f378a;--on-prim-cont:#e9ddff;--sec-cont:#4a4458;--on-sec-cont:#e8def8}
+[data-seed="amber"]{--primary:#8f4d00;--prim-cont:#ffdcbe;--on-prim-cont:#2f1500;--sec-cont:#ffddb3;--on-sec-cont:#2a1800}
+[data-theme="dark"][data-seed="amber"]{--primary:#ffb870;--on-primary:#4c2700;--prim-cont:#6d3900;--on-prim-cont:#ffdcbe;--sec-cont:#5c3f1e;--on-sec-cont:#ffddb3}
+[data-density="comfortable"]{--row-pad:18px 20px;--card-r:16px;--list-gap:8px}
+[data-density="compact"]{--row-pad:11px 14px;--card-r:12px;--list-gap:3px}
+[data-motion="expressive"]{--ease:cubic-bezier(.34,1.4,.64,1);--lift:translateY(-1px)}
+[data-motion="calm"]{--ease:cubic-bezier(.2,0,0,1);--lift:none}
+[data-chat-side]{display:flex;flex-direction:column;gap:4px}
+[data-chat="list"]{--chat-cols:256px minmax(0,1fr) 340px}
+[data-chat="detail"]{--chat-cols:256px minmax(0,1fr) minmax(0,480px)}
+[data-shell]{display:flex;justify-content:center;min-height:100vh;background:transparent}
+[data-shell="phone"]{padding:30px 20px;background:#e9eef6}
+body:has([data-theme="dark"]) [data-shell="phone"]{background:#202124}
+[data-app]{container-type:inline-size;width:100%;min-width:0}
+[data-app="phone"]{position:relative;transform:translateZ(0);width:402px;max-width:100%;height:874px;flex:none;overflow:auto;overscroll-behavior:contain;border-radius:30px;box-shadow:0 12px 40px rgba(0,0,0,.24),0 2px 8px rgba(0,0,0,.14)}
+[data-app="phone"]::-webkit-scrollbar{width:0;height:0}
+[data-app="phone"] [data-vars]{--screen-min:874px}
+[data-vars]{
+--screen-min:100vh;
+--icon-btn:48px;--icon-btn-sm:44px;--row-icon:32px;--chip-h:36px;--text-btn-h:34px;--field-btn:40px;--field-btn-sm:36px;--back-h:40px;--submit-h:42px;
+--bar-pad:0 16px 0 8px;--hero-pad:0 24px 6vh;--hero-size:46px;--footer-just:space-between;
+--res-cols:minmax(380px,1fr) minmax(440px,1.15fr);--res-pad:18px 24px 40px;--chip-pad:0 20px 12px 68px;
+--pane-pos:sticky;--pane-max:calc(var(--screen-min) - 172px);--pane-pad:26px 28px 30px;--pane-radius:26px;
+--rail-pos:sticky;--meta-cols:180px 1fr;--meta-cols-chat:160px 1fr;--prompt-cols:1fr 1fr;--chat-pad:0 24px;
+}
+@container (max-width:1300px){
+[data-chat="list"]{--chat-cols:220px minmax(0,1fr) 320px}
+[data-chat="detail"]{--chat-cols:220px minmax(0,1fr) minmax(0,420px)}
+}
+@container (max-width:1080px){
+[data-vars]{--res-cols:minmax(0,1fr);--pane-pos:static;--pane-max:none}
+}
+@container (max-width:1040px){
+[data-chat="list"]{--chat-cols:minmax(0,1fr) 320px}
+[data-chat="detail"]{--chat-cols:minmax(0,1fr) minmax(0,400px)}
+[data-chat-side]{display:none}
+}
+@container (max-width:860px){
+[data-vars]{
+--icon-btn:44px;--icon-btn-sm:44px;--row-icon:44px;--chip-h:44px;--text-btn-h:44px;--field-btn:44px;--field-btn-sm:44px;--back-h:44px;--submit-h:44px;
+--bar-pad:0 6px;--hero-pad:0 18px 4vh;--hero-size:34px;--footer-just:center;
+--res-pad:12px 12px 32px;--chip-pad:0 12px 12px 12px;--pane-pad:20px 18px 26px;--pane-radius:20px;
+--rail-pos:static;--meta-cols:1fr;--meta-cols-chat:1fr;--prompt-cols:1fr;--chat-pad:0 14px;
+}
+[data-chat="list"],[data-chat="detail"]{--chat-cols:minmax(0,1fr)}
+[data-wide-only]{display:none !important}
+}
+@container (min-width:861px){
+[data-narrow-only]{display:none !important}
+}
+@keyframes dsUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes dsIn{from{opacity:0}to{opacity:1}}
+@keyframes dsShim{0%{background-position:-360px 0}100%{background-position:360px 0}}
+@keyframes dsSpin{to{transform:rotate(360deg)}}
+@keyframes dsDrawer{from{transform:translateX(-16px);opacity:0}to{transform:none;opacity:1}}
+</style>
+</helmet>
+
+<div data-shell="{{ appMode }}">
+  <div data-app="{{ appMode }}">
+<div data-vars="1" data-theme="{{ theme }}" data-seed="{{ seed }}" data-density="{{ density }}" data-motion="{{ motion }}" style="min-height:var(--screen-min);background:var(--surface);color:var(--on-surf);font-family:'Roboto Flex',system-ui,sans-serif;font-variation-settings:'wdth' 100">
+
+  <sc-if value="{{ historyOpen }}">
+    <div style="position:fixed;inset:0;z-index:68;background:var(--scrim);animation:dsIn .18s linear" onClick="{{ closeHistory }}">
+      <div style="width:300px;max-width:86vw;height:100%;background:var(--surf-2);border-radius:0 16px 16px 0;padding:20px 10px;overflow:auto;animation:dsDrawer .26s var(--ease)">
+        <button onClick="{{ newChat }}" style="display:flex;align-items:center;gap:11px;width:100%;height:46px;padding:0 18px 0 15px;border-radius:23px;background:{{ newChatBg }};color:{{ newChatFg }};font-size:14px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--surf-3)">
+          <span style="font:400 20px/1 'Material Symbols Rounded'">add</span>New chat
+        </button>
+        <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);margin:22px 0 6px 16px">RECENT</div>
+        <sc-for list="{{ convos }}" as="c" hint-placeholder-count="3">
+          <button onClick="{{ c.pick }}" style="text-align:left;display:block;width:100%;padding:10px 16px;border-radius:20px;background:{{ c.bg }};transition:background .16s var(--ease)" style-hover="background:var(--state)">
+            <div style="font-size:13.5px;line-height:1.4;color:{{ c.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.title }}</div>
+            <div style="font-size:11.5px;color:{{ c.sub }};margin-top:3px;opacity:.8">{{ c.when }}</div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ drawerOpen }}">
+    <div style="position:fixed;inset:0;z-index:70;background:var(--scrim);animation:dsIn .18s linear" onClick="{{ closeDrawer }}">
+      <div style="width:340px;height:100%;background:var(--surf-2);border-radius:0 16px 16px 0;padding:22px 12px;animation:dsDrawer .26s var(--ease)">
+        <div style="display:flex;align-items:center;gap:14px;padding:0 12px 22px">
+          <span style="font:400 24px/1 'Material Symbols Rounded';color:var(--on-surf-var)">menu</span>
+          <span style="font-size:20px;font-weight:500;letter-spacing:-.2px">Dataset Search</span>
+        </div>
+        <sc-for list="{{ drawerItems }}" as="d" hint-placeholder-count="5">
+          <div onClick="{{ d.go }}" style="display:flex;align-items:center;gap:14px;height:52px;padding:0 22px;border-radius:26px;color:{{ d.fg }};background:{{ d.bg }};font-size:14px;font-weight:500;cursor:pointer;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+            <span style="font:400 22px/1 'Material Symbols Rounded'">{{ d.icon }}</span>{{ d.label }}
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div data-screen-label="Home" style="min-height:var(--screen-min);display:flex;flex-direction:column">
+
+      <div style="height:72px;display:flex;align-items:center;gap:6px;padding:var(--bar-pad)">
+        <button onClick="{{ openDrawer }}" title="Main menu" style="width:var(--icon-btn);height:var(--icon-btn);border-radius:24px;display:grid;place-items:center;color:var(--on-surf-var);flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+          <span style="font:400 24px/1 'Material Symbols Rounded'">menu</span>
+        </button>
+        <div style="flex:1"></div>
+        <button onClick="{{ toggleTheme }}" title="Appearance" style="width:var(--icon-btn);height:var(--icon-btn);border-radius:24px;display:grid;place-items:center;color:var(--on-surf-var);flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+          <span style="font:400 22px/1 'Material Symbols Rounded'">{{ themeIcon }}</span>
+        </button>
+        <button data-wide-only="1" title="Google apps" style="width:var(--icon-btn);height:var(--icon-btn);border-radius:24px;display:grid;place-items:center;color:var(--on-surf-var);flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+          <span style="font:400 22px/1 'Material Symbols Rounded'">apps</span>
+        </button>
+        <button style="height:var(--icon-btn-sm);padding:0 24px;border-radius:20px;background:var(--primary);color:var(--on-primary);font-size:14px;font-weight:500;letter-spacing:.1px;flex:none;box-shadow:var(--sh-1);transition:box-shadow .2s var(--ease),transform .2s var(--ease)" style-hover="box-shadow:var(--sh-2);transform:var(--lift)">Sign in</button>
+      </div>
+
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--hero-pad)">
+        <div style="font-size:var(--hero-size);letter-spacing:-1.6px;line-height:1.04;text-align:center;font-variation-settings:'wght' 420;color:var(--on-surf);margin-bottom:14px;animation:dsUp .45s var(--ease) both">Dataset Search</div>
+        <div style="font-size:15px;color:var(--on-surf-var);margin-bottom:34px;text-align:center;text-wrap:pretty;max-width:600px;animation:dsUp .5s var(--ease) .05s both">Search across 100 million datasets from repositories, governments and research labs.</div>
+
+        <div style="width:100%;min-width:0;max-width:660px;position:relative;z-index:50;isolation:isolate;animation:dsUp .55s var(--ease) .1s both">
+          <div style="display:flex;align-items:center;gap:14px;height:58px;padding:0 10px 0 20px;border-radius:29px;border:1px solid {{ sbBorder }};background:{{ sbBg }};box-shadow:{{ sbShadow }};transition:box-shadow .2s var(--ease),background .2s var(--ease),border-color .2s var(--ease)">
+            <span style="font:400 22px/1 'Material Symbols Rounded';color:var(--on-surf-var)">search</span>
+            <input value="{{ query }}" onChange="{{ onQuery }}" onKeyDown="{{ onKey }}" onFocus="{{ onFocus }}" onBlur="{{ onBlur }}" placeholder="Search for datasets" style="flex:1;border:none;outline:none;background:transparent;font-size:16px;color:var(--on-surf);height:100%">
+            <button onClick="{{ onClear }}" title="Clear search" style="width:var(--field-btn);height:var(--field-btn);border-radius:20px;display:{{ clearShow }};place-items:center;color:var(--on-surf-var);flex:none" style-hover="background:var(--state)">
+              <span style="font:400 20px/1 'Material Symbols Rounded'">close</span>
+            </button>
+            <button onClick="{{ onSubmit }}" style="height:var(--submit-h);padding:0 22px;border-radius:21px;background:var(--primary);color:var(--on-primary);font-size:14px;font-weight:500;letter-spacing:.1px;flex:none;transition:transform .2s var(--ease)" style-hover="transform:var(--lift)">Search</button>
+          </div>
+
+          <sc-if value="{{ sugOpen }}">
+            <div style="position:absolute;left:0;right:0;top:66px;z-index:40;background:var(--surface);border-radius:20px;box-shadow:var(--sh-3);padding:10px 0;animation:dsUp .2s var(--ease)">
+              <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="4">
+                <div onMouseDown="{{ s.pick }}" style="display:flex;align-items:center;gap:16px;height:44px;padding:0 20px;font-size:15px;color:var(--on-surf);cursor:pointer;transition:background .14s var(--ease)" style-hover="background:var(--state)">
+                  <span style="font:400 20px/1 'Material Symbols Rounded';color:var(--on-surf-var)">{{ s.icon }}</span>{{ s.label }}
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;margin-top:26px;flex-wrap:wrap;justify-content:center;animation:dsUp .58s var(--ease) .13s both">
+          <span style="font-size:14px;color:var(--on-surf-var);margin-right:2px">Try</span>
+          <sc-for list="{{ tryChips }}" as="t" hint-placeholder-count="3">
+            <button onClick="{{ t.pick }}" style="height:var(--chip-h);padding:0 18px;border-radius:22px;background:var(--surf-2);color:var(--on-surf);font-size:14px;font-weight:500;transition:background .16s var(--ease),transform .16s var(--ease)" style-hover="background:var(--sec-cont);color:var(--on-sec-cont);transform:var(--lift)">{{ t.label }}</button>
+          </sc-for>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;margin-top:26px;animation:dsUp .62s var(--ease) .18s both">
+          <button onClick="{{ goChat }}" style="display:flex;align-items:center;gap:9px;height:44px;padding:0 22px 0 18px;border-radius:22px;background:var(--sec-cont);color:var(--on-sec-cont);font-size:14.5px;font-weight:500;transition:transform .18s var(--ease),box-shadow .18s var(--ease)" style-hover="transform:var(--lift);box-shadow:var(--sh-2)">
+            <span style="font:400 20px/1 'Material Symbols Rounded'">auto_awesome</span>Ask AI about datasets
+          </button>
+        </div>
+
+        <div style="margin-top:30px;font-size:14px;color:var(--on-surf-var);animation:dsIn .8s .3s both"><a href="#help">Learn more</a> about Dataset Search.</div>
+      </div>
+
+      <div style="border-top:1px solid var(--outline-var);background:var(--surf-1);padding:18px 20px;display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:var(--footer-just)">
+        <div style="display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;min-width:0">
+          <sc-for list="{{ languages }}" as="l" hint-placeholder-count="9">
+            <span style="font-size:13px;color:var(--on-surf-var);padding:6px 12px;border-radius:14px;cursor:pointer;white-space:nowrap;transition:background .16s var(--ease)" style-hover="background:var(--state);color:var(--on-surf)">{{ l.label }}</span>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center;flex:none;margin-left:auto">
+          <sc-for list="{{ footerLinks }}" as="f" hint-placeholder-count="3">
+            <span style="font-size:13px;color:var(--on-surf-var);padding:6px 12px;border-radius:14px;cursor:pointer;white-space:nowrap;transition:background .16s var(--ease)" style-hover="background:var(--state);color:var(--on-surf)">{{ f.label }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isResults }}">
+    <div data-screen-label="Results">
+
+      <div style="position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--outline-var)">
+        <div style="height:72px;display:flex;align-items:center;gap:8px;padding:var(--bar-pad)">
+          <button onClick="{{ openDrawer }}" title="Main menu" style="width:var(--icon-btn);height:var(--icon-btn);border-radius:24px;display:grid;place-items:center;color:var(--on-surf-var);flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+            <span style="font:400 24px/1 'Material Symbols Rounded'">menu</span>
+          </button>
+          <div data-wide-only="1" onClick="{{ goHome }}" style="font-size:20px;letter-spacing:-.6px;white-space:nowrap;font-variation-settings:'wght' 420;color:var(--on-surf);cursor:pointer;padding:0 14px 0 4px">Dataset Search</div>
+
+          <div style="flex:1;min-width:0;max-width:740px;position:relative">
+            <div style="display:flex;align-items:center;gap:12px;height:48px;padding:0 8px 0 18px;border-radius:24px;border:1px solid {{ sbBorder }};background:{{ sbBg }};box-shadow:{{ sbShadow }};transition:box-shadow .2s var(--ease),background .2s var(--ease),border-color .2s var(--ease)">
+              <span style="font:400 20px/1 'Material Symbols Rounded';color:var(--on-surf-var)">search</span>
+              <input value="{{ query }}" onChange="{{ onQuery }}" onKeyDown="{{ onKey }}" onFocus="{{ onFocus }}" onBlur="{{ onBlur }}" placeholder="Search for datasets" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font-size:15px;color:var(--on-surf);height:100%">
+              <button onClick="{{ onClear }}" title="Clear search" style="width:var(--field-btn-sm);height:var(--field-btn-sm);border-radius:18px;display:{{ clearShow }};place-items:center;color:var(--on-surf-var);flex:none" style-hover="background:var(--state)">
+                <span style="font:400 19px/1 'Material Symbols Rounded'">close</span>
+              </button>
+              <button onClick="{{ onSubmit }}" style="width:var(--field-btn-sm);height:var(--field-btn-sm);border-radius:18px;display:grid;place-items:center;background:var(--primary);color:var(--on-primary);flex:none">
+                <span style="font:400 19px/1 'Material Symbols Rounded'">arrow_forward</span>
+              </button>
+            </div>
+            <sc-if value="{{ sugOpen }}">
+              <div style="position:absolute;left:0;right:0;top:56px;z-index:40;background:var(--surface);border-radius:18px;box-shadow:var(--sh-3);padding:8px 0;animation:dsUp .2s var(--ease)">
+                <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="4">
+                  <div onMouseDown="{{ s.pick }}" style="display:flex;align-items:center;gap:16px;height:42px;padding:0 18px;font-size:14px;cursor:pointer;transition:background .14s var(--ease)" style-hover="background:var(--state)">
+                    <span style="font:400 19px/1 'Material Symbols Rounded';color:var(--on-surf-var)">{{ s.icon }}</span>{{ s.label }}
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+
+          <div data-wide-only="1" style="flex:1"></div>
+          <button onClick="{{ toggleTheme }}" title="Appearance" style="width:var(--icon-btn-sm);height:var(--icon-btn-sm);border-radius:22px;display:grid;place-items:center;color:var(--on-surf-var);flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+            <span style="font:400 21px/1 'Material Symbols Rounded'">{{ themeIcon }}</span>
+          </button>
+          <button data-wide-only="1" title="Google apps" style="width:var(--icon-btn-sm);height:var(--icon-btn-sm);border-radius:22px;display:grid;place-items:center;color:var(--on-surf-var);flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+            <span style="font:400 21px/1 'Material Symbols Rounded'">apps</span>
+          </button>
+          <button data-wide-only="1" style="height:var(--icon-btn-sm);padding:0 20px;border-radius:19px;flex:none;background:var(--sec-cont);color:var(--on-sec-cont);font-size:14px;font-weight:500;transition:transform .16s var(--ease)" style-hover="transform:var(--lift)">Sign in</button>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px;padding:var(--chip-pad);flex-wrap:wrap">
+          <sc-for list="{{ chips }}" as="c" hint-placeholder-count="5">
+            <div data-menu-root="1" style="position:relative">
+              <button onClick="{{ c.toggle }}" style="display:flex;align-items:center;gap:6px;height:var(--chip-h);padding:0 15px;border-radius:22px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};font-size:14px;font-weight:500;transition:background .16s var(--ease),border-color .16s var(--ease)" style-hover="background:var(--state)">
+                <sc-if value="{{ c.leadOn }}">
+                  <span style="font:400 18px/1 'Material Symbols Rounded'">check</span>
+                </sc-if>
+                {{ c.label }}
+                <sc-if value="{{ c.arrowOn }}">
+                  <span style="font:400 18px/1 'Material Symbols Rounded'">expand_more</span>
+                </sc-if>
+              </button>
+              <sc-if value="{{ c.open }}">
+                <div style="position:absolute;top:44px;left:0;z-index:50;min-width:236px;background:var(--surface);border-radius:14px;box-shadow:var(--sh-3);padding:8px 0;animation:dsUp .18s var(--ease)">
+                  <sc-for list="{{ c.items }}" as="o" hint-placeholder-count="4">
+                    <div onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:12px;height:42px;padding:0 16px;font-size:14px;color:var(--on-surf);cursor:pointer;white-space:nowrap;transition:background .14s var(--ease)" style-hover="background:var(--state)">
+                      <span style="font:400 18px/1 'Material Symbols Rounded';width:18px;color:var(--primary)">{{ o.mark }}</span>{{ o.label }}
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+          <sc-if value="{{ hasFilters }}">
+            <button onClick="{{ clearFilters }}" style="height:var(--chip-h);padding:0 14px;border-radius:22px;color:var(--primary);font-size:14px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--state)">Clear filters</button>
+          </sc-if>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:var(--res-cols);gap:26px;padding:var(--res-pad);max-width:1600px;margin:0 auto;align-items:start">
+
+        <sc-if value="{{ showListCol }}">
+        <div style="min-width:0">
+          <div style="display:flex;align-items:center;gap:12px;padding:2px 6px 12px">
+            <div style="font-size:13px;color:var(--on-surf-var)">{{ countLabel }}</div>
+            <div style="flex:1"></div>
+            <div data-menu-root="1" style="position:relative">
+              <button onClick="{{ toggleSort }}" style="display:flex;align-items:center;gap:6px;height:var(--text-btn-h);padding:0 12px;border-radius:22px;color:var(--on-surf-var);font-size:13px;font-weight:500;flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                <span style="font:400 18px/1 'Material Symbols Rounded'">swap_vert</span>{{ sortLabel }}
+              </button>
+              <sc-if value="{{ sortOpen }}">
+                <div style="position:absolute;top:40px;right:0;z-index:50;min-width:190px;background:var(--surface);border-radius:14px;box-shadow:var(--sh-3);padding:8px 0;animation:dsUp .18s var(--ease)">
+                  <sc-for list="{{ sortItems }}" as="o" hint-placeholder-count="3">
+                    <div onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:12px;height:42px;padding:0 16px;font-size:14px;cursor:pointer;transition:background .14s var(--ease)" style-hover="background:var(--state)">
+                      <span style="font:400 18px/1 'Material Symbols Rounded';width:18px;color:var(--primary)">{{ o.mark }}</span>{{ o.label }}
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+
+          <sc-if value="{{ loading }}">
+            <div style="display:flex;flex-direction:column;gap:var(--list-gap)">
+              <sc-for list="{{ skeletons }}" as="k" hint-placeholder-count="4">
+                <div style="padding:var(--row-pad);border-radius:var(--card-r);background:var(--surf-1)">
+                  <div style="height:12px;width:34%;border-radius:6px;background:linear-gradient(90deg,var(--surf-3) 25%,var(--surf-4) 37%,var(--surf-3) 63%);background-size:720px 100%;animation:dsShim 1.3s infinite linear"></div>
+                  <div style="height:16px;width:78%;border-radius:8px;margin-top:12px;background:linear-gradient(90deg,var(--surf-3) 25%,var(--surf-4) 37%,var(--surf-3) 63%);background-size:720px 100%;animation:dsShim 1.3s infinite linear"></div>
+                  <div style="height:11px;width:92%;border-radius:6px;margin-top:12px;background:linear-gradient(90deg,var(--surf-3) 25%,var(--surf-4) 37%,var(--surf-3) 63%);background-size:720px 100%;animation:dsShim 1.3s infinite linear"></div>
+                  <div style="height:11px;width:60%;border-radius:6px;margin-top:8px;background:linear-gradient(90deg,var(--surf-3) 25%,var(--surf-4) 37%,var(--surf-3) 63%);background-size:720px 100%;animation:dsShim 1.3s infinite linear"></div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ showList }}">
+            <div style="display:flex;flex-direction:column;gap:var(--list-gap)">
+              <sc-for list="{{ results }}" as="r" hint-placeholder-count="4">
+                <div onClick="{{ r.pick }}" style="position:relative;padding:var(--row-pad);border-radius:var(--card-r);cursor:pointer;background:{{ r.bg }};box-shadow:{{ r.ring }};transition:background .18s var(--ease),box-shadow .18s var(--ease)" style-hover="background:var(--surf-2)">
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                    <div style="width:26px;height:26px;border-radius:9px;display:grid;place-items:center;background:{{ r.avBg }};color:{{ r.avFg }};font-size:12px;font-weight:600;flex:none">{{ r.initial }}</div>
+                    <div style="flex:1;min-width:0;font-size:12.5px;color:var(--on-surf-var);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.provider }} · {{ r.domain }}</div>
+                    <button onClick="{{ r.star }}" title="Save dataset" style="width:var(--row-icon);height:var(--row-icon);border-radius:22px;display:grid;place-items:center;color:{{ r.starFg }};flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                      <span style="font:400 19px/1 'Material Symbols Rounded';font-variation-settings:'FILL' {{ r.starFill }}">bookmark</span>
+                    </button>
+                  </div>
+                  <div style="font-size:17px;font-variation-settings:'wght' 520;letter-spacing:-.2px;line-height:1.32;color:{{ r.titleFg }};margin-bottom:6px">{{ r.title }}</div>
+                  <div style="font-size:13.5px;line-height:1.5;color:var(--on-surf-var);text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-height:41px">{{ r.desc }}</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:11px">
+                    <sc-for list="{{ r.badges }}" as="b" hint-placeholder-count="2">
+                      <span style="height:24px;display:inline-flex;align-items:center;gap:5px;padding:0 10px;border-radius:12px;background:var(--surf-3);color:var(--on-surf-var);font-size:11.5px;font-weight:500;letter-spacing:.2px">
+                        <span style="font:400 14px/1 'Material Symbols Rounded'">{{ b.icon }}</span>{{ b.label }}
+                      </span>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isEmpty }}">
+            <div style="padding:64px 24px;text-align:center;background:var(--surf-1);border-radius:20px">
+              <span style="font:400 44px/1 'Material Symbols Rounded';color:var(--outline)">search_off</span>
+              <div style="font-size:18px;font-weight:500;margin-top:16px">No datasets match these filters</div>
+              <div style="font-size:14px;color:var(--on-surf-var);margin-top:8px">Try removing a filter or broadening your query.</div>
+              <button onClick="{{ clearFilters }}" style="margin-top:22px;height:40px;padding:0 24px;border-radius:20px;border:1px solid var(--outline);color:var(--primary);font-size:14px;font-weight:500" style-hover="background:var(--state)">Clear filters</button>
+            </div>
+          </sc-if>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ hasSel }}">
+          <div style="position:var(--pane-pos);top:150px;background:var(--surf-1);border-radius:var(--pane-radius);padding:var(--pane-pad);max-height:var(--pane-max);overflow:auto;min-width:0;animation:dsUp .3s var(--ease)">
+            <button data-narrow-only="1" onClick="{{ closeDetail }}" style="display:flex;align-items:center;gap:8px;height:var(--back-h);margin:0 0 14px -6px;padding:0 16px 0 9px;border-radius:22px;color:var(--on-surf-var);font-size:13.5px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+              <span style="font:400 20px/1 'Material Symbols Rounded'">arrow_back</span>All results
+            </button>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+              <div style="width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:{{ sel.avBg }};color:{{ sel.avFg }};font-size:13px;font-weight:600">{{ sel.initial }}</div>
+              <div style="font-size:13px;color:var(--on-surf-var)">{{ sel.provider }}</div>
+            </div>
+            <div style="font-size:25px;font-variation-settings:'wght' 520;letter-spacing:-.6px;line-height:1.24;text-wrap:pretty">{{ sel.title }}</div>
+
+            <div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px">
+                <div style="display:flex;gap:10px;flex:none">
+                  <button onClick="{{ saveSel }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:22px;border:1px solid var(--outline);color:{{ sel.saveFg }};font-size:14px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                    <span style="font:400 18px/1 'Material Symbols Rounded';font-variation-settings:'FILL' {{ sel.saveFill }}">bookmark</span>{{ sel.saveLabel }}
+                  </button>
+                  <button onClick="{{ share }}" title="Share" style="width:var(--icon-btn-sm);height:var(--icon-btn-sm);border-radius:22px;border:1px solid var(--outline);display:grid;place-items:center;color:var(--on-surf-var);flex:none" style-hover="background:var(--state)">
+                    <span style="font:400 18px/1 'Material Symbols Rounded'">share</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div style="border-top:1px solid var(--outline-var);margin-top:24px">
+              <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);margin:26px 0 14px">{{ sourcesHeading }}</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ sourcesShown }}" as="s" hint-placeholder-count="2">
+                  <button onClick="{{ s.go }}" style="display:flex;align-items:center;gap:9px;height:var(--icon-btn-sm);max-width:100%;min-width:0;padding:0 15px 0 6px;border-radius:22px;border:1px solid var(--outline-var);background:var(--surface);color:var(--on-surf);font-size:13.5px;font-weight:500;transition:background .16s var(--ease),border-color .16s var(--ease)" style-hover="background:var(--surf-3);border-color:var(--outline)">
+                    <span style="width:26px;height:26px;border-radius:9px;display:grid;place-items:center;background:{{ s.bg }};color:{{ s.fg }};font-size:12px;font-weight:600;flex:none">{{ s.initial }}</span>
+                    <span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ s.name }}</span>
+                    <span style="font:400 16px/1 'Material Symbols Rounded';color:var(--on-surf-var);flex:none">open_in_new</span>
+                  </button>
+                </sc-for>
+              </div>
+              <sc-if value="{{ srcMore }}">
+                <button onClick="{{ toggleSrc }}" style="display:flex;align-items:center;gap:6px;height:var(--text-btn-h);margin-top:8px;padding:0 15px 0 13px;border-radius:22px;color:var(--primary);font-size:13.5px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                  <span style="font:400 18px/1 'Material Symbols Rounded'">{{ srcIcon }}</span>{{ srcLabel }}
+                </button>
+              </sc-if>
+              <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);border-top:1px solid var(--outline-var);padding-top:26px;margin:28px 0 14px">AVAILABLE FORMATS</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ formatChips }}" as="f" hint-placeholder-count="3">
+                  <span style="height:32px;display:inline-flex;align-items:center;gap:7px;padding:0 14px;border-radius:16px;background:var(--surf-3);color:var(--on-surf);font-size:13px;font-weight:500">
+                    <span style="font:400 16px/1 'Material Symbols Rounded';color:var(--on-surf-var)">download</span>{{ f.label }}
+                  </span>
+                </sc-for>
+              </div>
+              <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);border-top:1px solid var(--outline-var);padding-top:26px;margin:28px 0 14px">DESCRIPTION</div>
+              <div style="font-size:14.5px;line-height:1.65;color:var(--on-surf-var);text-wrap:pretty;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:{{ descClamp }};max-height:{{ descMax }};transition:max-height .3s var(--ease)">{{ sel.longDesc }}</div>
+              <sc-if value="{{ descLong }}">
+                <button onClick="{{ toggleDesc }}" style="display:flex;align-items:center;gap:6px;height:var(--text-btn-h);margin-top:8px;padding:0 15px 0 13px;border-radius:22px;color:var(--primary);font-size:13.5px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                  <span style="font:400 18px/1 'Material Symbols Rounded'">{{ descIcon }}</span>{{ descLabel }}
+                </button>
+              </sc-if>
+              <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);border-top:1px solid var(--outline-var);padding-top:26px;margin:28px 0 14px">DATASET INFORMATION</div>
+              <div style="border-radius:18px;overflow:hidden;border:1px solid var(--outline-var)">
+                <sc-for list="{{ metaRows }}" as="m" hint-placeholder-count="6">
+                  <div style="display:grid;grid-template-columns:var(--meta-cols);gap:4px 16px;padding:13px 18px;background:{{ m.bg }};font-size:13.5px">
+                    <div style="color:var(--on-surf-var)">{{ m.k }}</div>
+                    <div style="color:var(--on-surf);text-wrap:pretty">{{ m.v }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <sc-if value="{{ hasPreview }}">
+                <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);border-top:1px solid var(--outline-var);padding-top:26px;margin:28px 0 14px">DATA PREVIEW</div>
+                <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px">
+                  <sc-for list="{{ previewChips }}" as="p" hint-placeholder-count="4">
+                    <span style="height:28px;display:inline-flex;align-items:center;gap:6px;padding:0 11px;border-radius:14px;background:{{ p.bg }};color:{{ p.fg }};font-size:12px;font-weight:500;max-width:100%;min-width:0">
+                      <span style="font:400 15px/1 'Material Symbols Rounded';flex:none">{{ p.icon }}</span>
+                      <span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.label }}</span>
+                    </span>
+                  </sc-for>
+                </div>
+                <div style="border-radius:18px;border:1px solid var(--outline-var);overflow:hidden">
+                  <div style="overflow-x:auto">
+                    <div style="display:grid;grid-template-columns:{{ previewCols }};min-width:max-content">
+                      <sc-for list="{{ previewCells }}" as="c" hint-placeholder-count="12">
+                        <div style="padding:10px 14px;font-size:12.5px;line-height:1.4;white-space:nowrap;background:{{ c.bg }};color:{{ c.fg }};font-weight:{{ c.weight }};text-align:{{ c.align }};font-family:{{ c.family }};border-bottom:1px solid var(--outline-var)">{{ c.v }}</div>
+                      </sc-for>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:8px 10px 8px 16px;background:var(--surface)">
+                    <div data-menu-root="1" style="position:relative;flex:none">
+                      <button onClick="{{ toggleRpp }}" style="display:flex;align-items:center;gap:5px;height:var(--text-btn-h);padding:0 10px;border-radius:22px;color:var(--on-surf-var);font-size:12px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                        {{ rppLabel }}<span style="font:400 17px/1 'Material Symbols Rounded'">expand_more</span>
+                      </button>
+                      <sc-if value="{{ rppOpen }}">
+                        <div style="position:absolute;bottom:44px;left:0;z-index:50;min-width:150px;background:var(--surface);border-radius:14px;box-shadow:var(--sh-3);padding:6px 0;animation:dsUp .18s var(--ease)">
+                          <sc-for list="{{ rppItems }}" as="o" hint-placeholder-count="3">
+                            <div onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:10px;height:40px;padding:0 14px;font-size:13.5px;color:var(--on-surf);cursor:pointer;white-space:nowrap;transition:background .14s var(--ease)" style-hover="background:var(--state)">
+                              <span style="font:400 17px/1 'Material Symbols Rounded';width:17px;color:var(--primary)">{{ o.mark }}</span>{{ o.label }}
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-if>
+                    </div>
+                    <div style="flex:1;min-width:0;text-align:right;font-size:12px;color:var(--on-surf-var);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ previewNote }}</div>
+                    <button onClick="{{ prevPage }}" title="Previous rows" style="width:var(--text-btn-h);height:var(--text-btn-h);border-radius:22px;display:grid;place-items:center;color:{{ prevFg }};flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                      <span style="font:400 19px/1 'Material Symbols Rounded'">chevron_left</span>
+                    </button>
+                    <button onClick="{{ nextPage }}" title="Next rows" style="width:var(--text-btn-h);height:var(--text-btn-h);border-radius:22px;display:grid;place-items:center;color:{{ nextFg }};flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                      <span style="font:400 19px/1 'Material Symbols Rounded'">chevron_right</span>
+                    </button>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ hasArea }}">
+                <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);border-top:1px solid var(--outline-var);padding-top:26px;margin:28px 0 14px">AREA COVERED</div>
+                <div style="border-radius:18px;border:1px solid var(--outline-var);overflow:hidden;background:var(--surf-2)">
+                  <div style="height:240px">
+                    <x-import component-from-global-scope="dataset-area-map" from="./world-map.js" west="{{ bboxW }}" east="{{ bboxE }}" south="{{ bboxS }}" north="{{ bboxN }}" hint-size="100%,210px"></x-import>
+                  </div>
+                  <div style="display:flex;flex-wrap:wrap;gap:8px 10px;padding:14px 16px;border-top:1px solid var(--outline-var);background:var(--surface)">
+                    <sc-for list="{{ bboxChips }}" as="b" hint-placeholder-count="4">
+                      <span style="height:26px;display:inline-flex;align-items:center;gap:6px;padding:0 11px;border-radius:13px;background:var(--surf-3);color:var(--on-surf-var);font-size:12px;font-weight:500">
+                        <span style="color:var(--on-surf);font-weight:600">{{ b.k }}</span>{{ b.v }}
+                      </span>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:7px;margin-top:10px;font-size:12.5px;color:var(--on-surf-var)">
+                  <span style="font:400 16px/1 'Material Symbols Rounded'">public</span>{{ areaNote }}
+                </div>
+              </sc-if>
+            </div>
+
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isChat }}">
+    <div data-screen-label="AI chat" style="min-height:var(--screen-min);display:flex;flex-direction:column">
+
+      <div style="position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--outline-var);height:72px;display:flex;align-items:center;gap:8px;padding:var(--bar-pad)">
+        <button onClick="{{ openDrawer }}" title="Main menu" style="width:var(--icon-btn);height:var(--icon-btn);border-radius:24px;display:grid;place-items:center;color:var(--on-surf-var);flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+          <span style="font:400 24px/1 'Material Symbols Rounded'">menu</span>
+        </button>
+        <div onClick="{{ goHome }}" style="font-size:20px;letter-spacing:-.6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;font-variation-settings:'wght' 420;color:var(--on-surf);cursor:pointer;padding-left:4px">Dataset Search</div>
+        <span style="height:24px;display:inline-flex;align-items:center;gap:5px;padding:0 10px;border-radius:12px;background:var(--sec-cont);color:var(--on-sec-cont);font-size:11.5px;font-weight:600;letter-spacing:.4px;margin-left:8px">
+          <span style="font:400 14px/1 'Material Symbols Rounded'">auto_awesome</span>AI
+        </span>
+        <div style="flex:1"></div>
+        <button data-narrow-only="1" onClick="{{ openHistory }}" title="Recent chats" style="width:var(--icon-btn-sm);height:var(--icon-btn-sm);border-radius:22px;display:grid;place-items:center;color:var(--on-surf-var);flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+          <span style="font:400 21px/1 'Material Symbols Rounded'">history</span>
+        </button>
+        <button onClick="{{ backToSearch }}" title="Back to search" style="display:flex;align-items:center;gap:7px;height:var(--icon-btn-sm);padding:0 16px 0 13px;flex:none;border-radius:19px;background:var(--surf-2);color:var(--on-surf);font-size:13.5px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--surf-3)">
+          <span style="font:400 18px/1 'Material Symbols Rounded'">search</span><span data-wide-only="1">Search</span>
+        </button>
+        <button onClick="{{ toggleTheme }}" title="Appearance" style="width:var(--icon-btn-sm);height:var(--icon-btn-sm);border-radius:22px;display:grid;place-items:center;color:var(--on-surf-var);flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+          <span style="font:400 21px/1 'Material Symbols Rounded'">{{ themeIcon }}</span>
+        </button>
+      </div>
+
+      <div data-chat="{{ chatMode }}" style="flex:1;display:grid;grid-template-columns:var(--chat-cols);gap:26px;max-width:1560px;width:100%;margin:0 auto;padding:var(--chat-pad);align-items:start;transition:grid-template-columns .3s var(--ease)">
+
+        <div data-chat-side="1" style="position:sticky;top:96px;margin-top:28px;max-height:calc(var(--screen-min) - 120px);overflow:auto;min-width:0">
+          <button onClick="{{ newChat }}" style="display:flex;align-items:center;gap:11px;height:46px;padding:0 18px 0 15px;border-radius:23px;background:{{ newChatBg }};color:{{ newChatFg }};font-size:14px;font-weight:500;flex:none;transition:background .16s var(--ease)" style-hover="background:var(--surf-3)">
+            <span style="font:400 20px/1 'Material Symbols Rounded'">add</span>New chat
+          </button>
+          <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);margin:22px 0 6px 16px">RECENT</div>
+          <sc-for list="{{ convos }}" as="c" hint-placeholder-count="3">
+            <button onClick="{{ c.pick }}" style="text-align:left;display:block;width:100%;padding:10px 16px;border-radius:20px;background:{{ c.bg }};transition:background .16s var(--ease)" style-hover="background:var(--state)">
+              <div style="font-size:13.5px;line-height:1.4;color:{{ c.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.title }}</div>
+              <div style="font-size:11.5px;color:{{ c.sub }};margin-top:3px;opacity:.8">{{ c.when }}</div>
+            </button>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ chatThread }}">
+        <div style="display:flex;flex-direction:column;min-height:calc(var(--screen-min) - 72px);min-width:0">
+          <div style="flex:1;padding:28px 0 8px">
+
+            <sc-if value="{{ chatEmpty }}">
+              <div style="padding:32px 0 8px;animation:dsUp .4s var(--ease)">
+                <div style="width:60px;height:60px;border-radius:20px;background:var(--prim-cont);color:var(--on-prim-cont);display:grid;place-items:center;margin-bottom:20px">
+                  <span style="font:400 30px/1 'Material Symbols Rounded'">auto_awesome</span>
+                </div>
+                <div style="font-size:34px;letter-spacing:-1.1px;line-height:1.15;font-variation-settings:'wght' 460;text-wrap:pretty">Describe the data you need.<br><span style="color:var(--on-surf-var)">I'll find it and explain the trade-offs.</span></div>
+                <div style="font-size:14.5px;color:var(--on-surf-var);margin-top:14px;max-width:600px;text-wrap:pretty">Ask in plain language — coverage, licensing, resolution, update cadence. Answers cite the datasets they come from.</div>
+                <div style="display:grid;grid-template-columns:var(--prompt-cols);gap:10px;margin-top:30px;max-width:760px">
+                  <sc-for list="{{ prompts }}" as="p" hint-placeholder-count="4">
+                    <button onClick="{{ p.pick }}" style="text-align:left;display:flex;align-items:flex-start;gap:12px;padding:16px 18px;border-radius:18px;background:var(--surf-1);color:var(--on-surf);font-size:14px;line-height:1.45;transition:background .16s var(--ease),transform .16s var(--ease)" style-hover="background:var(--surf-2);transform:var(--lift)">
+                      <span style="font:400 19px/1 'Material Symbols Rounded';color:var(--primary);margin-top:1px">{{ p.icon }}</span>
+                      <span style="text-wrap:pretty">{{ p.label }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+
+            <div style="display:flex;flex-direction:column;gap:26px;max-width:820px">
+              <sc-for list="{{ messages }}" as="m" hint-placeholder-count="2">
+                <div style="animation:dsUp .3s var(--ease)">
+                  <sc-if value="{{ m.isUser }}">
+                    <div style="display:flex;justify-content:flex-end">
+                      <div style="max-width:78%;padding:13px 18px;border-radius:22px 22px 6px 22px;background:var(--sec-cont);color:var(--on-sec-cont);font-size:15px;line-height:1.55;text-wrap:pretty">{{ m.text }}</div>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ m.isAI }}">
+                    <div style="display:flex;gap:14px">
+                      <div style="width:32px;height:32px;border-radius:11px;background:var(--prim-cont);color:var(--on-prim-cont);display:grid;place-items:center;flex:none;margin-top:2px">
+                        <span style="font:400 18px/1 'Material Symbols Rounded'">auto_awesome</span>
+                      </div>
+                      <div style="flex:1;min-width:0">
+                        <div style="font-size:15px;line-height:1.65;color:var(--on-surf);text-wrap:pretty">{{ m.text }}</div>
+                        <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+                          <sc-for list="{{ m.cards }}" as="c" hint-placeholder-count="2">
+                            <div onClick="{{ c.open }}" style="display:flex;gap:13px;padding:15px 17px;border-radius:18px;background:var(--surf-1);cursor:pointer;transition:background .16s var(--ease)" style-hover="background:var(--surf-2)">
+                              <div style="width:32px;height:32px;border-radius:11px;display:grid;place-items:center;background:{{ c.avBg }};color:{{ c.avFg }};font-size:13px;font-weight:600;flex:none">{{ c.initial }}</div>
+                              <div style="flex:1;min-width:0">
+                                <div style="font-size:12.5px;color:var(--on-surf-var);margin-bottom:4px">{{ c.provider }} · {{ c.domain }}</div>
+                                <div style="font-size:15px;font-variation-settings:'wght' 520;line-height:1.35;text-wrap:pretty">{{ c.title }}</div>
+                                <div style="font-size:13.5px;line-height:1.5;color:var(--on-surf-var);margin-top:7px;text-wrap:pretty">{{ c.why }}</div>
+                                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+                                  <span style="height:24px;display:inline-flex;align-items:center;padding:0 10px;border-radius:12px;background:var(--surf-3);color:var(--on-surf-var);font-size:11.5px;font-weight:500">{{ c.license }}</span>
+                                  <span style="height:24px;display:inline-flex;align-items:center;padding:0 10px;border-radius:12px;background:var(--surf-3);color:var(--on-surf-var);font-size:11.5px;font-weight:500">{{ c.formats }}</span>
+                                  <span style="height:24px;display:inline-flex;align-items:center;padding:0 10px;border-radius:12px;background:var(--surf-3);color:var(--on-surf-var);font-size:11.5px;font-weight:500">{{ c.updatedLabel }}</span>
+                                </div>
+                              </div>
+                              <span style="font:400 18px/1 'Material Symbols Rounded';color:var(--primary);flex:none">arrow_outward</span>
+                            </div>
+                          </sc-for>
+                        </div>
+                        <div style="display:flex;gap:6px;margin-top:14px">
+                          <button onClick="{{ m.copy }}" title="Copy answer" style="width:var(--text-btn-h);height:var(--text-btn-h);border-radius:22px;display:grid;place-items:center;color:var(--on-surf-var);transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                            <span style="font:400 17px/1 'Material Symbols Rounded'">content_copy</span>
+                          </button>
+                          <button onClick="{{ m.up }}" title="Good answer" style="width:var(--text-btn-h);height:var(--text-btn-h);border-radius:22px;display:grid;place-items:center;color:var(--on-surf-var);transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                            <span style="font:400 17px/1 'Material Symbols Rounded'">thumb_up</span>
+                          </button>
+                          <button onClick="{{ m.down }}" title="Bad answer" style="width:var(--text-btn-h);height:var(--text-btn-h);border-radius:22px;display:grid;place-items:center;color:var(--on-surf-var);transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                            <span style="font:400 17px/1 'Material Symbols Rounded'">thumb_down</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
+
+              <sc-if value="{{ thinking }}">
+                <div style="display:flex;gap:14px;align-items:center">
+                  <div style="width:32px;height:32px;border-radius:11px;background:var(--prim-cont);color:var(--on-prim-cont);display:grid;place-items:center;flex:none">
+                    <span style="font:400 18px/1 'Material Symbols Rounded'">auto_awesome</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--on-surf-var)">
+                    <span style="width:16px;height:16px;border-radius:8px;border:2px solid var(--outline-var);border-top-color:var(--primary);display:inline-block;animation:dsSpin .8s linear infinite"></span>
+                    Searching 50 million datasets…
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+
+          <div style="position:sticky;bottom:0;background:var(--surface);padding:14px 0 22px">
+            <div style="max-width:820px">
+              <div style="display:flex;align-items:flex-end;gap:10px;padding:8px 8px 8px 20px;border-radius:26px;border:1px solid {{ cbBorder }};background:var(--surf-2);box-shadow:{{ cbShadow }};transition:border-color .2s var(--ease),box-shadow .2s var(--ease)">
+                <input value="{{ chatInput }}" onChange="{{ onChatInput }}" onKeyDown="{{ onChatKey }}" onFocus="{{ onChatFocus }}" onBlur="{{ onChatBlur }}" placeholder="Ask about datasets, licences or coverage" style="flex:1;border:none;outline:none;background:transparent;font-size:15px;color:var(--on-surf);height:40px">
+                <button onClick="{{ sendChat }}" title="Send" style="width:var(--field-btn);height:var(--field-btn);border-radius:20px;display:grid;place-items:center;background:{{ sendBg }};color:{{ sendFg }};flex:none;transition:background .18s var(--ease)">
+                  <span style="font:400 20px/1 'Material Symbols Rounded'">arrow_upward</span>
+                </button>
+              </div>
+              <div style="font-size:12px;color:var(--on-surf-var);margin-top:10px;padding-left:4px">Answers cite indexed dataset metadata and can be wrong. Check the source before you rely on it.</div>
+            </div>
+          </div>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ chatDetail }}">
+          <div style="position:var(--rail-pos);top:96px;background:var(--surf-1);border-radius:24px;padding:22px 24px 28px;margin-top:28px;max-height:var(--pane-max);overflow:auto;min-width:0;animation:dsUp .28s var(--ease)">
+            <button onClick="{{ closeChatDetail }}" style="display:flex;align-items:center;gap:8px;height:var(--back-h);margin:0 0 16px -8px;padding:0 16px 0 9px;border-radius:22px;color:var(--on-surf-var);font-size:13px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+              <span style="font:400 19px/1 'Material Symbols Rounded'">arrow_back</span>Datasets in this chat
+            </button>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+              <div style="width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:{{ sel.avBg }};color:{{ sel.avFg }};font-size:13px;font-weight:600">{{ sel.initial }}</div>
+              <div style="font-size:13px;color:var(--on-surf-var)">{{ sel.provider }}</div>
+            </div>
+            <div style="font-size:23px;font-variation-settings:'wght' 520;letter-spacing:-.5px;line-height:1.26;text-wrap:pretty">{{ sel.title }}</div>
+
+            <div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px">
+                <div style="display:flex;gap:10px;flex:none">
+                  <button onClick="{{ saveSel }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:22px;border:1px solid var(--outline);color:{{ sel.saveFg }};font-size:14px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                    <span style="font:400 18px/1 'Material Symbols Rounded';font-variation-settings:'FILL' {{ sel.saveFill }}">bookmark</span>{{ sel.saveLabel }}
+                  </button>
+                  <button onClick="{{ share }}" title="Share" style="width:var(--icon-btn-sm);height:var(--icon-btn-sm);border-radius:22px;border:1px solid var(--outline);display:grid;place-items:center;color:var(--on-surf-var);flex:none" style-hover="background:var(--state)">
+                    <span style="font:400 18px/1 'Material Symbols Rounded'">share</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div style="border-top:1px solid var(--outline-var);margin-top:24px">
+              <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);margin:26px 0 14px">{{ sourcesHeading }}</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ sourcesShown }}" as="s" hint-placeholder-count="2">
+                  <button onClick="{{ s.go }}" style="display:flex;align-items:center;gap:9px;height:var(--icon-btn-sm);max-width:100%;min-width:0;padding:0 15px 0 6px;border-radius:22px;border:1px solid var(--outline-var);background:var(--surface);color:var(--on-surf);font-size:13.5px;font-weight:500;transition:background .16s var(--ease),border-color .16s var(--ease)" style-hover="background:var(--surf-3);border-color:var(--outline)">
+                    <span style="width:26px;height:26px;border-radius:9px;display:grid;place-items:center;background:{{ s.bg }};color:{{ s.fg }};font-size:12px;font-weight:600;flex:none">{{ s.initial }}</span>
+                    <span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ s.name }}</span>
+                    <span style="font:400 16px/1 'Material Symbols Rounded';color:var(--on-surf-var);flex:none">open_in_new</span>
+                  </button>
+                </sc-for>
+              </div>
+              <sc-if value="{{ srcMore }}">
+                <button onClick="{{ toggleSrc }}" style="display:flex;align-items:center;gap:6px;height:var(--text-btn-h);margin-top:8px;padding:0 15px 0 13px;border-radius:22px;color:var(--primary);font-size:13.5px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                  <span style="font:400 18px/1 'Material Symbols Rounded'">{{ srcIcon }}</span>{{ srcLabel }}
+                </button>
+              </sc-if>
+              <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);border-top:1px solid var(--outline-var);padding-top:26px;margin:28px 0 14px">AVAILABLE FORMATS</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ formatChips }}" as="f" hint-placeholder-count="3">
+                  <span style="height:32px;display:inline-flex;align-items:center;gap:7px;padding:0 14px;border-radius:16px;background:var(--surf-3);color:var(--on-surf);font-size:13px;font-weight:500">
+                    <span style="font:400 16px/1 'Material Symbols Rounded';color:var(--on-surf-var)">download</span>{{ f.label }}
+                  </span>
+                </sc-for>
+              </div>
+              <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);border-top:1px solid var(--outline-var);padding-top:26px;margin:28px 0 14px">DESCRIPTION</div>
+              <div style="font-size:14.5px;line-height:1.65;color:var(--on-surf-var);text-wrap:pretty;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:{{ descClamp }};max-height:{{ descMax }};transition:max-height .3s var(--ease)">{{ sel.longDesc }}</div>
+              <sc-if value="{{ descLong }}">
+                <button onClick="{{ toggleDesc }}" style="display:flex;align-items:center;gap:6px;height:var(--text-btn-h);margin-top:8px;padding:0 15px 0 13px;border-radius:22px;color:var(--primary);font-size:13.5px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                  <span style="font:400 18px/1 'Material Symbols Rounded'">{{ descIcon }}</span>{{ descLabel }}
+                </button>
+              </sc-if>
+              <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);border-top:1px solid var(--outline-var);padding-top:26px;margin:28px 0 14px">DATASET INFORMATION</div>
+              <div style="border-radius:18px;overflow:hidden;border:1px solid var(--outline-var)">
+                <sc-for list="{{ metaRows }}" as="m" hint-placeholder-count="6">
+                  <div style="display:grid;grid-template-columns:var(--meta-cols-chat);gap:4px 16px;padding:13px 18px;background:{{ m.bg }};font-size:13.5px">
+                    <div style="color:var(--on-surf-var)">{{ m.k }}</div>
+                    <div style="color:var(--on-surf);text-wrap:pretty">{{ m.v }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <sc-if value="{{ hasPreview }}">
+                <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);border-top:1px solid var(--outline-var);padding-top:26px;margin:28px 0 14px">DATA PREVIEW</div>
+                <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px">
+                  <sc-for list="{{ previewChips }}" as="p" hint-placeholder-count="4">
+                    <span style="height:28px;display:inline-flex;align-items:center;gap:6px;padding:0 11px;border-radius:14px;background:{{ p.bg }};color:{{ p.fg }};font-size:12px;font-weight:500;max-width:100%;min-width:0">
+                      <span style="font:400 15px/1 'Material Symbols Rounded';flex:none">{{ p.icon }}</span>
+                      <span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.label }}</span>
+                    </span>
+                  </sc-for>
+                </div>
+                <div style="border-radius:18px;border:1px solid var(--outline-var);overflow:hidden">
+                  <div style="overflow-x:auto">
+                    <div style="display:grid;grid-template-columns:{{ previewCols }};min-width:max-content">
+                      <sc-for list="{{ previewCells }}" as="c" hint-placeholder-count="12">
+                        <div style="padding:10px 14px;font-size:12.5px;line-height:1.4;white-space:nowrap;background:{{ c.bg }};color:{{ c.fg }};font-weight:{{ c.weight }};text-align:{{ c.align }};font-family:{{ c.family }};border-bottom:1px solid var(--outline-var)">{{ c.v }}</div>
+                      </sc-for>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:8px 10px 8px 16px;background:var(--surface)">
+                    <div data-menu-root="1" style="position:relative;flex:none">
+                      <button onClick="{{ toggleRpp }}" style="display:flex;align-items:center;gap:5px;height:var(--text-btn-h);padding:0 10px;border-radius:22px;color:var(--on-surf-var);font-size:12px;font-weight:500;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                        {{ rppLabel }}<span style="font:400 17px/1 'Material Symbols Rounded'">expand_more</span>
+                      </button>
+                      <sc-if value="{{ rppOpen }}">
+                        <div style="position:absolute;bottom:44px;left:0;z-index:50;min-width:150px;background:var(--surface);border-radius:14px;box-shadow:var(--sh-3);padding:6px 0;animation:dsUp .18s var(--ease)">
+                          <sc-for list="{{ rppItems }}" as="o" hint-placeholder-count="3">
+                            <div onClick="{{ o.pick }}" style="display:flex;align-items:center;gap:10px;height:40px;padding:0 14px;font-size:13.5px;color:var(--on-surf);cursor:pointer;white-space:nowrap;transition:background .14s var(--ease)" style-hover="background:var(--state)">
+                              <span style="font:400 17px/1 'Material Symbols Rounded';width:17px;color:var(--primary)">{{ o.mark }}</span>{{ o.label }}
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-if>
+                    </div>
+                    <div style="flex:1;min-width:0;text-align:right;font-size:12px;color:var(--on-surf-var);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ previewNote }}</div>
+                    <button onClick="{{ prevPage }}" title="Previous rows" style="width:var(--text-btn-h);height:var(--text-btn-h);border-radius:22px;display:grid;place-items:center;color:{{ prevFg }};flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                      <span style="font:400 19px/1 'Material Symbols Rounded'">chevron_left</span>
+                    </button>
+                    <button onClick="{{ nextPage }}" title="Next rows" style="width:var(--text-btn-h);height:var(--text-btn-h);border-radius:22px;display:grid;place-items:center;color:{{ nextFg }};flex:none;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                      <span style="font:400 19px/1 'Material Symbols Rounded'">chevron_right</span>
+                    </button>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ hasArea }}">
+                <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);border-top:1px solid var(--outline-var);padding-top:26px;margin:28px 0 14px">AREA COVERED</div>
+                <div style="border-radius:18px;border:1px solid var(--outline-var);overflow:hidden;background:var(--surf-2)">
+                  <div style="height:240px">
+                    <x-import component-from-global-scope="dataset-area-map" from="./world-map.js" west="{{ bboxW }}" east="{{ bboxE }}" south="{{ bboxS }}" north="{{ bboxN }}" hint-size="100%,210px"></x-import>
+                  </div>
+                  <div style="display:flex;flex-wrap:wrap;gap:8px 10px;padding:14px 16px;border-top:1px solid var(--outline-var);background:var(--surface)">
+                    <sc-for list="{{ bboxChips }}" as="b" hint-placeholder-count="4">
+                      <span style="height:26px;display:inline-flex;align-items:center;gap:6px;padding:0 11px;border-radius:13px;background:var(--surf-3);color:var(--on-surf-var);font-size:12px;font-weight:500">
+                        <span style="color:var(--on-surf);font-weight:600">{{ b.k }}</span>{{ b.v }}
+                      </span>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:7px;margin-top:10px;font-size:12.5px;color:var(--on-surf-var)">
+                  <span style="font:400 16px/1 'Material Symbols Rounded'">public</span>{{ areaNote }}
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ chatList }}">
+          <div style="position:var(--rail-pos);top:96px;background:var(--surf-1);border-radius:24px;padding:22px;margin-top:28px;min-width:0">
+            <div style="font-size:12px;font-weight:600;letter-spacing:.7px;color:var(--on-surf-var);margin-bottom:14px">DATASETS IN THIS CHAT</div>
+            <sc-if value="{{ noCited }}">
+              <div style="font-size:13.5px;line-height:1.6;color:var(--on-surf-var);text-wrap:pretty">Datasets referenced in the conversation collect here, so you can compare and open them later.</div>
+            </sc-if>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <sc-for list="{{ cited }}" as="c" hint-placeholder-count="3">
+                <div onClick="{{ c.open }}" style="display:flex;gap:11px;padding:11px 12px;border-radius:14px;cursor:pointer;transition:background .16s var(--ease)" style-hover="background:var(--state)">
+                  <div style="width:28px;height:28px;border-radius:10px;display:grid;place-items:center;background:{{ c.avBg }};color:{{ c.avFg }};font-size:12px;font-weight:600;flex:none">{{ c.initial }}</div>
+                  <div style="min-width:0">
+                    <div style="font-size:13.5px;font-variation-settings:'wght' 520;line-height:1.35;text-wrap:pretty">{{ c.title }}</div>
+                    <div style="font-size:12px;color:var(--on-surf-var);margin-top:3px">{{ c.domain }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ toast }}">
+    <div style="position:fixed;left:26px;bottom:26px;z-index:80;display:flex;align-items:center;gap:14px;min-height:50px;padding:0 18px;border-radius:14px;background:var(--surf-4);color:var(--on-surf);box-shadow:var(--sh-3);font-size:14px;animation:dsUp .26s var(--ease)">
+      <span style="font:400 19px/1 'Material Symbols Rounded';color:var(--primary)">check_circle</span>{{ toast }}
+    </div>
+  </sc-if>
+</div>
+  </div>
+
+  <div style="position:fixed;right:22px;bottom:74px;z-index:90;display:flex;align-items:center;gap:2px;padding:4px;border-radius:24px;background:{{ tgBg }};box-shadow:0 4px 14px rgba(0,0,0,.22);font-family:'Roboto Flex',system-ui,sans-serif">
+    <sc-for list="{{ previewModes }}" as="p" hint-placeholder-count="2">
+      <button onClick="{{ p.pick }}" title="{{ p.title }}" style="display:flex;align-items:center;gap:7px;height:40px;padding:0 16px;border-radius:20px;background:{{ p.bg }};color:{{ p.fg }};font-size:13px;font-weight:500;transition:background .18s cubic-bezier(.2,0,0,1)">
+        <span style="font:400 20px/1 'Material Symbols Rounded'">{{ p.icon }}</span>{{ p.label }}
+      </button>
+    </sc-for>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;viewport&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;phone&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;'auto' | 'phone'&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light' | 'dark'&quot;,&quot;section&quot;:&quot;Appearance&quot;},&quot;seed&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;blue&quot;,&quot;green&quot;,&quot;violet&quot;,&quot;amber&quot;],&quot;default&quot;:&quot;blue&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Appearance&quot;},&quot;density&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;comfortable&quot;,&quot;compact&quot;],&quot;default&quot;:&quot;comfortable&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;expressive&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = {
+    view: 'home', query: '', submitted: '', loading: false, focus: false,
+    sel: 0, tab: 'desc', drawer: false, sort: 'Relevance', menu: null,
+    saved: {}, toast: '', theme: null, seed: null,
+    messages: [], chatInput: '', thinking: false, chatFocus: false
+  };
+
+  all = [
+    { id:'openaq', title:'OpenAQ: Global Air Quality Measurements', provider:'OpenAQ', domain:'openaq.org', updated:'Jul 28, 2026', ts:202607, year:2026,
+      desc:'Real-time and historical air quality measurements aggregated from more than 15,000 government and research-grade monitoring stations across 130 countries.',
+      longDesc:'OpenAQ aggregates physical air quality measurements from government reference monitors, research-grade instruments and validated low-cost sensor networks into a single open schema. Every record carries a timestamp, coordinates, an averaging period and a provenance pointer back to the originating agency, so measurements can be traced and re-validated. Coverage includes PM2.5, PM10, NO₂, SO₂, O₃, CO and black carbon.',
+      license:'CC BY 4.0', commercial:true, free:true, formats:['CSV','Parquet','JSON','API'], area:'Worldwide (130 countries)', period:'Nov 2013 – present',
+      size:'4.2 billion measurements', citations:1284, topic:'Environment', authors:'OpenAQ contributors', tags:['air quality','pollution','pm2.5','sensors','environment'],
+      sources:[{name:'openaq.org', note:'Primary provider · API and bulk download'},{name:'registry.opendata.aws', note:'Mirror · S3 Parquet archive'},{name:'huggingface.co', note:'Mirror · datasets library'}] },
+    { id:'aqs', title:'Air Quality System (AQS) Daily Summary Data', provider:'U.S. Environmental Protection Agency', domain:'epa.gov', updated:'Jun 12, 2026', ts:202606, year:2026,
+      desc:'Daily summary statistics for criteria pollutants and air toxics measured at every EPA-approved regulatory monitor in the United States and its territories.',
+      longDesc:'The Air Quality System is the EPA authoritative repository of ambient air monitoring data collected by state, local and tribal agencies. Daily summary files roll up hourly observations into maxima, means and completeness flags per monitor and parameter, and are the basis for National Ambient Air Quality Standard attainment designations.',
+      license:'Public domain (U.S. Government work)', commercial:true, free:true, formats:['CSV','ZIP','API'], area:'United States', period:'1980 – 2026',
+      size:'38 GB (annual partitions)', citations:3106, topic:'Environment', authors:'EPA Office of Air Quality Planning and Standards', tags:['air quality','epa','monitoring','regulatory'],
+      sources:[{name:'epa.gov', note:'Primary provider · pre-generated files'},{name:'catalog.data.gov', note:'Federal catalog entry'}] },
+    { id:'sat', title:'Global Annual PM2.5 Grids from Satellite AOD, V6.GL.02', provider:'Washington University in St. Louis / SEDAC', domain:'sedac.ciesin.columbia.edu', updated:'Mar 4, 2026', ts:202603, year:2026,
+      desc:'Gridded annual and monthly surface PM2.5 concentrations at 0.01° resolution, derived from satellite aerosol optical depth combined with chemical transport modelling.',
+      longDesc:'Surface PM2.5 estimates are produced by relating satellite aerosol optical depth retrievals from MODIS, MISR and SeaWiFS to near-surface concentrations using the GEOS-Chem chemical transport model, then calibrated to ground monitors with a geographically weighted regression. The product is widely used for global burden-of-disease estimation where ground monitoring is sparse.',
+      license:'CC BY 4.0', commercial:true, free:true, formats:['NetCDF','GeoTIFF'], area:'Worldwide (0.01° grid)', period:'1998 – 2024',
+      size:'11 GB', citations:5920, topic:'Environment', authors:'Aaron van Donkelaar, Randall V. Martin, et al.', tags:['pm2.5','satellite','air quality','remote sensing','grid'],
+      sources:[{name:'sedac.ciesin.columbia.edu', note:'Primary provider · registered download'},{name:'zenodo.org', note:'Versioned archive with DOI'}] },
+    { id:'eea', title:'European Air Quality e-Reporting (AQ e-Reporting)', provider:'European Environment Agency', domain:'eea.europa.eu', updated:'May 30, 2026', ts:202605, year:2026,
+      desc:'Officially reported air quality monitoring data and metadata submitted by 39 European countries under the Ambient Air Quality Directives.',
+      longDesc:'Member states report validated hourly and daily measurements, station metadata, assessment regimes and attainment results through the e-Reporting data flow. The dataset separates up-to-date near-real-time streams from the quality-assured annual submissions, and includes station classification, altitude and surrounding land use for every sampling point.',
+      license:'EEA standard reuse policy', commercial:true, free:true, formats:['CSV','XML','API'], area:'European Union and EEA (39 countries)', period:'2013 – 2026',
+      size:'2.1 GB per reporting year', citations:742, topic:'Environment', authors:'European Environment Agency', tags:['air quality','europe','monitoring','regulatory'],
+      bbox:{ w:-31.3, e:44.8, s:34.6, n:71.2, label:'Europe and EEA member states' },
+      sources:[{name:'eea.europa.eu', note:'Primary provider · discomap services'},{name:'data.europa.eu', note:'EU open data portal entry'}] },
+    { id:'beijing', title:'Beijing Multi-Site Air-Quality Data Set', provider:'UCI Machine Learning Repository', domain:'archive.ics.uci.edu', updated:'Feb 19, 2026', ts:202602, year:2026,
+      desc:'Hourly pollutant readings from twelve nationally controlled monitoring sites in Beijing, paired with meteorological data from the nearest weather station.',
+      longDesc:'A standard benchmark for time-series imputation and forecasting. Each of the twelve site files contains hourly PM2.5, PM10, SO₂, NO₂, CO and O₃ concentrations joined to temperature, pressure, dew point, precipitation, wind direction and wind speed. Missing values are retained rather than interpolated so imputation methods can be compared fairly.',
+      license:'CC BY 4.0', commercial:true, free:true, formats:['CSV'], area:'Beijing, China (12 sites)', period:'Mar 2013 – Feb 2017',
+      size:'420,768 rows', citations:2311, topic:'Machine learning', authors:'Song Xi Chen', tags:['air quality','benchmark','time series','machine learning','beijing'],
+      bbox:{ w:116.0, e:116.7, s:39.7, n:40.2, label:'Beijing municipality' },
+      sources:[{name:'archive.ics.uci.edu', note:'Primary provider · direct download'},{name:'kaggle.com', note:'Mirror with community notebooks'}] },
+    { id:'purpleair', title:'Low-Cost Sensor Calibration Corpus (PurpleAir vs. Reference Monitors)', provider:'Harvard Dataverse', domain:'dataverse.harvard.edu', updated:'Jan 9, 2026', ts:202601, year:2026,
+      desc:'Paired measurements from co-located low-cost optical sensors and regulatory reference monitors, with fitted correction models for humidity and wood smoke.',
+      longDesc:'Collocation records span 214 sites across a wide range of humidity and aerosol regimes. Alongside the raw paired readings the deposit ships fitted correction coefficients, residual diagnostics and reproduction scripts, so groups running community sensor networks can apply and audit a defensible correction rather than reporting raw counts.',
+      license:'CC0 1.0 (public domain dedication)', commercial:true, free:true, formats:['CSV','R'], area:'United States (214 sites)', period:'2019 – 2025',
+      size:'86 MB', citations:96, topic:'Environment', authors:'Chen, Nguyen, Okafor et al.', tags:['air quality','sensors','calibration','purpleair'],
+      sources:[{name:'dataverse.harvard.edu', note:'Primary provider · DOI-minted deposit'}] },
+    { id:'wildfire', title:'Wildfire Smoke PM2.5 Exposure by U.S. County, 2006–2025', provider:'Stanford Environmental Change and Human Outcomes Lab', domain:'figshare.com', updated:'Apr 22, 2026', ts:202604, year:2026,
+      desc:'Daily smoke-attributable PM2.5 for every county in the contiguous United States, separated from non-smoke background concentrations.',
+      longDesc:'Smoke plume boundaries from the NOAA Hazard Mapping System are combined with station and satellite PM2.5 to decompose daily exposure into smoke and non-smoke components. County-day estimates are population weighted and carry an uncertainty interval, supporting health and labour-market studies of wildfire smoke.',
+      license:'CC BY 4.0', commercial:true, free:true, formats:['CSV','GeoJSON'], area:'Contiguous United States (3,108 counties)', period:'2006 – 2025',
+      size:'1.4 GB', citations:418, topic:'Environment', authors:'Marshall Burke, Sam Heft-Neal, et al.', tags:['wildfire','smoke','pm2.5','air quality','health'],
+      bbox:{ w:-124.8, e:-66.9, s:24.5, n:49.4, label:'Contiguous United States' },
+      sources:[{name:'figshare.com', note:'Primary provider · versioned release'},{name:'github.com', note:'Processing code and changelog'}] },
+    { id:'who', title:'Household Air Pollution Attributable Deaths, 2000–2024', provider:'World Health Organization', domain:'who.int', updated:'Dec 15, 2025', ts:202512, year:2025,
+      desc:'Country-level estimates of mortality and disease burden attributable to household air pollution from polluting cooking fuels and technologies.',
+      longDesc:'Part of the Global Health Observatory. Estimates combine fuel-use survey data, exposure-response functions and cause-specific mortality envelopes to produce deaths, DALYs and age-standardised rates by country, year, sex and cause, with uncertainty intervals for every cell.',
+      license:'CC BY-NC-SA 3.0 IGO', commercial:false, free:true, formats:['CSV','XML','API'], area:'Worldwide (194 member states)', period:'2000 – 2024',
+      size:'54 MB', citations:1103, topic:'Health', authors:'WHO Department of Environment, Climate Change and Health', tags:['health','air pollution','mortality','who','global'],
+      sources:[{name:'who.int', note:'Primary provider · GHO OData API'},{name:'data.humdata.org', note:'Humanitarian data exchange mirror'}] },
+    { id:'lmsys', title:'LMSYS-Chat-1M: Real-World LLM Conversation Prompts', provider:'LMSYS Org', domain:'huggingface.co', updated:'Jul 2, 2026', ts:202607, year:2026,
+      desc:'One million real user conversations with 25 large language models, collected from a public model-comparison arena with PII redaction applied.',
+      longDesc:'Conversations are logged from a public arena where anonymous users chat with randomly assigned models. Each record carries the model identifier, the full multi-turn exchange, language detection, an OpenAI moderation tag and a redaction flag. The corpus is widely used to study prompt distribution, jailbreak prevalence and instruction-following in the wild.',
+      license:'LMSYS-Chat-1M dataset license', commercial:false, free:true, formats:['Parquet','JSON'], area:'Worldwide', period:'Apr 2023 – 2026',
+      size:'1,000,000 conversations', citations:894, topic:'Machine learning', authors:'LMSYS Org, UC Berkeley', tags:['llm','prompts','conversations','nlp','machine learning'],
+      sources:[{name:'huggingface.co', note:'Primary provider · gated access'},{name:'github.com', note:'Loader scripts and documentation'}] },
+    { id:'ultra', title:'UltraFeedback: Preference Prompts and Fine-Grained Ratings', provider:'OpenBMB', domain:'huggingface.co', updated:'May 18, 2026', ts:202605, year:2026,
+      desc:'Sixty-four thousand instruction prompts with four model completions each, rated on helpfulness, honesty, truthfulness and instruction-following.',
+      longDesc:'Prompts are sampled from six instruction sources and completed by a pool of seventeen models spanning several capability tiers. Each completion receives a scalar score and a written rationale on four axes, enabling both reward-model training and analysis of where automated judges and humans diverge.',
+      license:'MIT', commercial:true, free:true, formats:['Parquet','JSON'], area:'Worldwide (English)', period:'2023 – 2026',
+      size:'64,000 prompts · 256,000 completions', citations:610, topic:'Machine learning', authors:'OpenBMB / Tsinghua NLP', tags:['llm','prompts','preference','rlhf','machine learning'],
+      sources:[{name:'huggingface.co', note:'Primary provider · datasets library'},{name:'github.com', note:'Annotation pipeline source'}] },
+    { id:'zhvi', title:'Zillow Home Value Index (ZHVI) by ZIP Code', provider:'Zillow Research', domain:'zillow.com', updated:'Aug 1, 2026', ts:202608, year:2026,
+      desc:'Smoothed, seasonally adjusted measure of typical home value by ZIP code, metro and county, reported monthly across the United States.',
+      longDesc:'ZHVI reflects the typical value for homes in the 35th to 65th percentile range, computed from Zillow home value estimates rather than transaction prices, which keeps the series stable when the mix of homes that sell shifts. Series are published for all homes and split by bedroom count and structure type.',
+      license:'Zillow terms of use (attribution required)', commercial:false, free:false, formats:['CSV'], area:'United States (ZIP, county, metro)', period:'Jan 2000 – Jul 2026',
+      size:'1.8 GB', citations:2044, topic:'Economics', authors:'Zillow Research', tags:['housing','housing prices','real estate','economics','zillow'],
+      sources:[{name:'zillow.com', note:'Primary provider · research data page'}] },
+    { id:'ahs', title:'American Housing Survey (AHS) Public Use File', provider:'U.S. Census Bureau', domain:'census.gov', updated:'Nov 3, 2025', ts:202511, year:2025,
+      desc:'Longitudinal national survey of housing units covering structure, costs, neighbourhood quality and household characteristics for the same units over time.',
+      longDesc:'The AHS follows a fixed sample of housing units across survey waves, recording physical condition, housing costs, mortgage and rent burden, recent moves, neighbourhood satisfaction and rotating topical modules such as disaster preparedness. Public use files are edited and weighted for national and selected metropolitan estimates.',
+      license:'Public domain (U.S. Government work)', commercial:true, free:true, formats:['CSV','SAS','DTA'], area:'United States', period:'1973 – 2025',
+      size:'6.3 GB', citations:1580, topic:'Economics', authors:'U.S. Census Bureau / HUD', tags:['housing','housing prices','survey','economics','census'],
+      sources:[{name:'census.gov', note:'Primary provider · public use files'},{name:'catalog.data.gov', note:'Federal catalog entry'}] },
+    { id:'gbif', title:'GBIF Species Occurrence Records', provider:'Global Biodiversity Information Facility', domain:'gbif.org', updated:'Aug 4, 2026', ts:202608, year:2026,
+      desc:'Georeferenced occurrence records for 2.4 million species, aggregated from museum specimens, national monitoring schemes and citizen-science observations.',
+      longDesc:'Records are published by more than 2,100 institutions against a shared Darwin Core schema, so specimens digitised from nineteenth-century collections sit alongside smartphone observations logged this morning. Each record carries a taxonomic identification, coordinates with an uncertainty radius, a basis of record and a licence declared by the publisher. Coordinate quality varies sharply by source, and the supplied issue flags are the practical way to filter it.',
+      license:'CC BY 4.0 (per record)', commercial:true, free:true, formats:['CSV','Darwin Core','API'], area:'Worldwide', period:'1600 – present',
+      size:'3.1 billion records', citations:8420, topic:'Biodiversity', authors:'GBIF Secretariat and publishing institutions', tags:['biodiversity','species','occurrence','ecology','birds','citizen science'],
+      sources:[{name:'gbif.org', note:'Primary provider · API and custom downloads'},{name:'registry.opendata.aws', note:'Mirror · Parquet snapshots'}] },
+    { id:'power', title:'Global Power Plant Database', provider:'World Resources Institute', domain:'wri.org', updated:'Feb 26, 2026', ts:202602, year:2026,
+      desc:'Geolocated inventory of 35,000 power plants across 167 countries with capacity, fuel type, ownership and reported annual generation.',
+      longDesc:'Each plant is reconciled from national registries, regulatory filings and satellite imagery, then given a stable identifier so capacity can be followed across ownership changes and repowering. Generation is reported where regulators publish it and estimated from capacity factors elsewhere; the estimation flag matters for any country-level accounting. Units below 1 MW are outside the collection threshold.',
+      license:'CC BY 4.0', commercial:true, free:true, formats:['CSV','GeoJSON'], area:'Worldwide (167 countries)', period:'2000 – 2025',
+      size:'35,000 plants', citations:2760, topic:'Energy', authors:'World Resources Institute', tags:['energy','electricity','power plants','solar','wind','renewable','capacity','generation'],
+      preview:{ file:'global_power_plant_database.csv', format:'CSV', size:'18.4 MB', rows:'35,142',
+        cols:['name','country','primary_fuel','capacity_mw','commissioned','estimated'],
+        data:[
+          ['Three Gorges','China','Hydro','22,500','2012','no'],
+          ['Itaipu','Brazil','Hydro','14,000','1984','no'],
+          ['Xiluodu','China','Hydro','13,860','2013','no'],
+          ['Belo Monte','Brazil','Hydro','11,233','2016','no'],
+          ['Grand Coulee','United States','Hydro','6,809','1942','no'],
+          ['Bhadla Solar Park','India','Solar','2,245','2020','no'],
+          ['Pavagada Solar Park','India','Solar','2,050','2019','no'],
+          ['Tengger Desert Solar Park','China','Solar','1,547','2016','yes'],
+          ['Hornsea Two','United Kingdom','Wind','1,386','2022','no'],
+          ['Hornsea One','United Kingdom','Wind','1,218','2019','no'],
+          ['Jiuquan Wind Base','China','Wind','7,965','2015','yes'],
+          ['Alta Wind Energy Center','United States','Wind','1,548','2014','no'],
+          ['Taichung','China (Taiwan)','Coal','5,500','1992','yes'],
+          ['Tuoketuo','China','Coal','6,720','2003','yes'],
+          ['Kashiwazaki-Kariwa','Japan','Nuclear','7,965','1985','no']
+        ] },
+      sources:[{name:'wri.org', note:'Primary provider · versioned release'},{name:'github.com', note:'Build pipeline and changelog'}] },
+    { id:'taxi', title:'NYC Taxi and For-Hire Vehicle Trip Records', provider:'NYC Taxi and Limousine Commission', domain:'nyc.gov', updated:'Jul 20, 2026', ts:202607, year:2026,
+      desc:'Trip-level records for yellow taxis, green taxis and app-dispatched vehicles, with pickup and drop-off times, zones, distances and fare components.',
+      longDesc:'Every licensed trip is reported to the regulator and published as monthly partitions. Records cover pickup and drop-off timestamps and taxi zones, trip distance, fare components, card tips and passenger counts. Precise coordinates were replaced by zone identifiers in 2016 for privacy, which is the main discontinuity to handle in long time series.',
+      license:'NYC Open Data terms (public domain)', commercial:true, free:true, formats:['Parquet','CSV'], area:'New York City', period:'2009 – present',
+      size:'2.1 billion trips', citations:1935, topic:'Transportation', authors:'NYC Taxi and Limousine Commission', tags:['transport','mobility','taxi','trips','urban','ridesharing'],
+      sources:[{name:'nyc.gov', note:'Primary provider · monthly Parquet'},{name:'registry.opendata.aws', note:'Mirror · S3 open data'}] },
+    { id:'pisa', title:'PISA 2025 Student, School and Teacher Questionnaires', provider:'OECD', domain:'oecd.org', updated:'Jan 22, 2026', ts:202601, year:2026,
+      desc:'Assessment results in reading, mathematics and science for 15-year-olds in 81 education systems, linked to student, school and teacher background surveys.',
+      longDesc:'Achievement is reported as plausible values rather than single scores, and every estimate needs the supplied replicate weights to be computed correctly. The questionnaire files carry a socio-economic index, school resourcing, instruction time and student wellbeing measures, which is what makes the data usable for comparative research rather than league tables.',
+      license:'OECD terms (attribution, non-commercial redistribution)', commercial:false, free:true, formats:['CSV','SPSS','SAS'], area:'81 countries and economies', period:'2000 – 2025',
+      size:'690,000 students', citations:6140, topic:'Education', authors:'OECD Directorate for Education and Skills', tags:['education','students','schools','assessment','learning','oecd'],
+      sources:[{name:'oecd.org', note:'Primary provider · release with codebooks'}] },
+    { id:'faostat', title:'FAOSTAT Crop and Livestock Production', provider:'Food and Agriculture Organization', domain:'fao.org', updated:'Jun 5, 2026', ts:202606, year:2026,
+      desc:'Annual production, area harvested and yield for 278 crop and livestock products, reported by country from national statistical agencies.',
+      longDesc:'Country submissions are harmonised to common commodity codes and units, with FAO estimates filling gaps where a country did not report. Estimated cells are flagged, and mixing them with official figures without checking the flag is the most common error in downstream analysis. Series are revised backwards as countries resubmit, so pin a release version for reproducibility.',
+      license:'CC BY-NC-SA 3.0 IGO', commercial:false, free:true, formats:['CSV','API'], area:'Worldwide (245 countries and territories)', period:'1961 – 2025',
+      size:'2.6 million rows', citations:4480, topic:'Agriculture', authors:'FAO Statistics Division', tags:['agriculture','crops','yield','food','livestock','farming'],
+      sources:[{name:'fao.org', note:'Primary provider · bulk and API'},{name:'data.humdata.org', note:'Humanitarian data exchange mirror'}] },
+    { id:'gaia', title:'Gaia Data Release 4: Astrometry and Photometry', provider:'European Space Agency', domain:'esa.int', updated:'Dec 3, 2025', ts:202512, year:2025,
+      desc:'Positions, parallaxes, proper motions and photometry for 1.9 billion celestial sources, with radial velocities for 33 million stars.',
+      longDesc:'The catalogue is the product of a global astrometric solution over the full mission baseline, delivering parallaxes precise enough to map the structure of the Milky Way disc. Systematic parallax offsets vary with magnitude, colour and sky position; the published correction function should be applied before distances are derived from them.',
+      license:'CC BY-SA 3.0 IGO', commercial:true, free:true, formats:['FITS','CSV','API'], area:'Full sky', period:'2014 – 2025 observations',
+      size:'1.9 billion sources (12 TB)', citations:15230, topic:'Astronomy', authors:'Gaia Collaboration', tags:['astronomy','stars','galaxy','catalogue','space','parallax'],
+      sources:[{name:'esa.int', note:'Primary provider · archive with ADQL queries'},{name:'vizier.cds.unistra.fr', note:'Mirror · cross-match services'}] },
+    { id:'voice', title:'Common Voice Corpus 20.0', provider:'Mozilla Foundation', domain:'commonvoice.mozilla.org', updated:'Apr 30, 2026', ts:202604, year:2026,
+      desc:'Crowd-sourced read speech in 133 languages with speaker-reported age, sex and accent, validated by community listeners.',
+      longDesc:'Contributors record prompted sentences and validate recordings made by others, so each clip carries up-votes and down-votes rather than a single quality label. Language coverage deliberately favours under-resourced languages, and the released splits are speaker-disjoint so models cannot memorise voices across training and test.',
+      license:'CC0 1.0 (public domain dedication)', commercial:true, free:true, formats:['MP3','CSV'], area:'Worldwide (133 languages)', period:'2017 – 2026',
+      size:'33,000 recorded hours', citations:1870, topic:'Machine learning', authors:'Mozilla Foundation and contributors', tags:['speech','audio','voice','languages','machine learning','transcription'],
+      sources:[{name:'commonvoice.mozilla.org', note:'Primary provider · per-language archives'},{name:'huggingface.co', note:'Mirror · datasets library'}] },
+    { id:'mimic', title:'MIMIC-IV Clinical Database', provider:'MIT Laboratory for Computational Physiology', domain:'physionet.org', updated:'Oct 14, 2025', ts:202510, year:2025,
+      desc:'De-identified electronic health records for 300,000 patients at a tertiary academic medical centre, covering labs, medications, procedures and vitals.',
+      longDesc:'Records are drawn from hospital and intensive-care information systems and shifted in time per patient to prevent re-identification. Tables cover admissions, transfers, laboratory results, prescriptions, procedures and charted vitals at minute resolution for ICU stays. Access requires a credentialed account and completion of human-subjects research training.',
+      license:'PhysioNet Credentialed Health Data License 1.5', commercial:false, free:true, formats:['CSV','Parquet'], area:'Single US academic medical centre', period:'2008 – 2022',
+      size:'432 GB', citations:7310, topic:'Health', authors:'Alistair Johnson, Tom Pollard, et al.', tags:['health','clinical','patients','hospital','icu','medical records'],
+      sources:[{name:'physionet.org', note:'Primary provider · credentialed access'},{name:'github.com', note:'Derived concepts and query library'}] }
+  ];
+
+  draft = { id:'draft', title:'New chat', when:'Now', messages:[] };
+
+  convos = [
+    { id:'c1', title:'Crop yield vs. harvested area since 1990', when:'2 hours ago', messages:[
+      { role:'user', text:'Has global food production grown through higher yields or more farmland?' },
+      { role:'ai', text:'Answering from FAOSTAT Crop and Livestock Production (Food and Agriculture Organization). Cereal yields rose 41% globally since 1990 while harvested area grew only 7%, so nearly all production growth came from intensification. Sub-Saharan Africa is the exception: area expansion accounts for two thirds of its growth and yields sit near 40% of the world average.', ids:['faostat'] }
+    ] },
+    { id:'c2', title:'Prompt datasets for reward models', when:'Yesterday', messages:[
+      { role:'user', text:'Find prompt datasets I can use to train a reward model.' },
+      { role:'ai', text:'Two datasets in the index fit that. OpenBMB is the closest match: worldwide (English), 2023 – 2026, released under MIT — the only one of the two you can use commercially without restriction.', ids:['ultra','lmsys'] }
+    ] },
+    { id:'c3', title:'Housing price data I can redistribute', when:'Mar 12', messages:[
+      { role:'user', text:'I need housing price data I can redistribute commercially. What are my options?' },
+      { role:'ai', text:'One dataset in the index fits that. U.S. Census Bureau is the closest match: united states, 1973 – 2025, released under public domain. Zillow publishes a finer-grained index, but its terms bar redistribution.', ids:['ahs','zhvi'] }
+    ] }
+  ];
+
+  active() {
+    const id = this.state.convoId || 'draft';
+    return id === 'draft' ? this.draft : (this.convos.find(c => c.id === id) || this.draft);
+  }
+
+  defaults = { updated:'Any time', format:'Any format', rights:'Any usage rights', topic:'Any topic', free:false };
+  filters = { ...this.defaults };
+
+  avatars = [
+    ['var(--prim-cont)','var(--on-prim-cont)'], ['var(--sec-cont)','var(--on-sec-cont)'],
+    ['var(--tert-cont)','var(--on-tert-cont)'], ['var(--warn-cont)','var(--on-warn-cont)']
+  ];
+
+  componentDidMount() {
+    this._out = (e) => {
+      if (e.target.closest && e.target.closest('[data-menu-root]')) return;
+      if (this.state.menu || this.state.sortOpen || this.state.rppOpen) this.setState({ menu:null, sortOpen:false, rppOpen:false });
+    };
+    document.addEventListener('mousedown', this._out, true);
+    this._mq = window.matchMedia('(max-width:860px)');
+    this._onMq = () => this.setState({ vpNarrow: this._mq.matches });
+    this._mq.addEventListener('change', this._onMq);
+    if (this._mq.matches) this.setState({ vpNarrow: true });
+  }
+  componentWillUnmount() { document.removeEventListener('mousedown', this._out, true); if (this._mq) this._mq.removeEventListener('change', this._onMq); clearTimeout(this._t); clearTimeout(this._l); }
+
+  theme() { return this.state.theme || this.props.theme || 'light'; }
+
+  flash(msg) {
+    clearTimeout(this._t);
+    this.setState({ toast: msg });
+    this._t = setTimeout(() => this.setState({ toast: '' }), 2200);
+  }
+
+  run(q) {
+    this.setState({ view:'results', query:q, submitted:q, loading:true, focus:false, sel:0, menu:null, srcOpen:false, descOpen:false, detailOpen:false, histOpen:false, pvPage:0 });
+    clearTimeout(this._l);
+    this._l = setTimeout(() => this.setState({ loading:false }), 620);
+  }
+
+  matches() {
+    const q = (this.state.submitted || '').toLowerCase();
+    let site = null, text = q;
+    const m = q.match(/site:(\S+)/);
+    if (m) { site = m[1]; text = q.replace(m[0], '').trim(); }
+    const toks = text.split(/\s+/).filter(Boolean);
+    let r = this.all.filter(d => {
+      if (site && !d.domain.includes(site)) return false;
+      const hay = (d.title + ' ' + d.desc + ' ' + d.provider + ' ' + d.topic + ' ' + d.tags.join(' ')).toLowerCase();
+      return toks.every(t => hay.includes(t));
+    });
+    const f = this.filters;
+    if (f.free) r = r.filter(d => d.free);
+    if (f.topic !== this.defaults.topic) r = r.filter(d => d.topic === f.topic);
+    if (f.format !== this.defaults.format) r = r.filter(d => d.formats.includes(f.format));
+    if (f.rights === 'Commercial use allowed') r = r.filter(d => d.commercial);
+    if (f.rights === 'Non-commercial only') r = r.filter(d => !d.commercial);
+    if (f.updated !== this.defaults.updated) {
+      const yrs = { 'Past year':1, 'Past 3 years':3, 'Past 5 years':5 }[f.updated];
+      const cut = 2026.6 - yrs;
+      r = r.filter(d => (d.year + (d.ts % 100) / 12) >= cut);
+    }
+    if (this.state.sort === 'Most recent') r = [...r].sort((a,b) => b.ts - a.ts);
+    if (this.state.sort === 'Most cited') r = [...r].sort((a,b) => b.citations - a.citations);
+    return r;
+  }
+
+  setFilter(k, v) { this.filters = { ...this.filters, [k]: v }; this.setState({ menu:null, sel:0 }); }
+
+  openDataset(id) {
+    if (this.state.view === 'chat') { this.setState({ chatSel:id, srcOpen:false, descOpen:false, pvPage:0 }); return; }
+    this.filters = { ...this.defaults };
+    const i = this.all.findIndex(d => d.id === id);
+    this.setState({ view:'results', query:'', submitted:'', sort:'Relevance', sel: i < 0 ? 0 : i, loading:false, menu:null, srcOpen:false, descOpen:false, detailOpen:true, histOpen:false, pvPage:0 });
+  }
+
+  stop = 'the and for you your are can could would should what which where when who how does did have has any all get find need want looking about with from into over under best good give show tell using use open free data dataset datasets set sets there this that these those since between across per off top most more than only just also like such very much many make made take work works help please thanks question answer'.split(' ');
+
+  pickFor(q) {
+    const toks = q.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/)
+      .filter(t => t.length > 2 && this.stop.indexOf(t) < 0);
+    if (!toks.length) return [];
+    const scored = this.all.map(d => {
+      const geo = (d.area + ' ' + d.provider).toLowerCase();
+      const hay = (d.title + ' ' + d.desc + ' ' + d.longDesc + ' ' + d.provider + ' ' + d.topic + ' ' + d.area + ' ' + d.tags.join(' ')).toLowerCase();
+      let sc = 0;
+      toks.forEach(t => {
+        const stem = t.replace(/(ies|es|s|an|ean)$/, '');
+        const re = new RegExp('\\b' + (stem.length > 3 ? stem : t));
+        if (!re.test(hay)) return;
+        sc += d.tags.some(x => x.indexOf(t) >= 0 || (stem.length > 3 && x.indexOf(stem) >= 0)) ? 2 : 1;
+        if (re.test(geo)) sc += 2;
+      });
+      return { d, sc };
+    }).filter(x => x.sc > 0).sort((a, b) => b.sc - a.sc || b.d.citations - a.d.citations);
+    if (!scored.length) return [];
+    const min = toks.length >= 3 ? Math.max(2, Math.ceil(scored[0].sc / 2)) : 1;
+    return scored.filter(x => x.sc >= min).slice(0, 3).map(x => x.d);
+  }
+
+  classify(q) {
+    const t = q.toLowerCase();
+    if (/\b(cook|recipe|steak|dinner|restaurant|joke|poem|song|movie|holiday|flight|hotel|workout|dating|horoscope|write me|weather today)\b/.test(t)) return 'offtopic';
+    if (/(how many|how much|what was|what is the|which countr|which cit|which state|the most|the least|largest|smallest|highest|lowest|average|median|trend|ranked|\bcut\b|\bfell\b|\brose\b|\bdrop|\bdecline|\bincrease|\bdecrease|percent|correlat)/.test(t)) return 'analytic';
+    return 'discovery';
+  }
+
+  analysis(d) {
+    const by = {
+      Environment: 'Population-weighted annual PM2.5 fell in 118 of 194 countries between 2015 and 2024. The steepest declines are China (−34%), Bosnia and Herzegovina (−29%) and Thailand (−22%). India fell only 6% and remains the highest-exposure large economy at 51 µg/m³, roughly ten times the WHO guideline. These are annual means, so short wildfire and dust episodes are smoothed away — use daily station data if episodic peaks matter.',
+      Health: 'Deaths attributable to household air pollution fell from 3.6 million in 2000 to 2.1 million in 2024, almost entirely through cleaner cooking fuels in East Asia. Sub-Saharan Africa is the exception: absolute deaths rose 14% as population growth outpaced fuel transition. Rates carry wide uncertainty intervals — treat the direction as solid and the level as approximate.',
+      Economics: 'Typical home values rose 61% nationally between 2015 and 2025, but the spread is what matters: Boise, Austin and Phoenix all exceeded 95%, while Chicago and Baltimore stayed under 35%. Growth peaked in mid-2021 and turned slightly negative through 2023 in the pandemic boom markets before flattening.',
+      'Machine learning': 'Across the 64,000 rated prompts, judges and models diverge most on honesty: automated raters score refusals 0.8 points higher than human annotators do, while agreement on instruction-following is close (κ = 0.71). Roughly 11% of arena conversations are single-turn factual lookups, which is worth excluding before you train a reward model on them.',
+      Energy: 'Utility-scale solar capacity in the inventory grew from 172 GW in 2015 to 1,140 GW in 2024. China accounts for 41% of the additions, then India (9%) and the United States (8%); per head of population, Australia and the Netherlands lead. Rooftop systems below the 1 MW collection threshold are excluded, so residential-heavy markets are understated.',
+      Biodiversity: 'Record density is very uneven: 62% of occurrences come from Europe and North America, which hold roughly 12% of described species. Volume grew ninefold since 2010, almost entirely from citizen-science platforms, so an apparent range expansion is often observer effort rather than the species moving. Effort-corrected models are the minimum before reading trends off this.',
+      Transportation: 'Weekday demand peaks at 6–7 pm, with a second peak after midnight on Friday and Saturday. App-dispatched vehicles overtook yellow taxis in 2017 and now carry about three quarters of trips, and mean trip distance rose 18% as pickups shifted out of Manhattan.',
+      Education: 'Mean mathematics scores fell in 42 of 81 systems relative to 2018, with the largest declines where schools were closed longest. Socio-economic status still explains about 15% of within-country variance in performance, and that share widened in most systems.',
+      Agriculture: 'Cereal yields rose 41% globally since 1990 while harvested area grew only 7%, so nearly all production growth came from intensification. Sub-Saharan Africa is the exception: area expansion accounts for two thirds of its growth and yields sit near 40% of the world average.',
+      Astronomy: 'Of the 1.9 billion sources, 33 million carry radial velocities — enough to trace disc kinematics to about 15 kpc. Parallax precision is magnitude dependent, better than 0.02 mas at G = 15 and roughly ten times worse at G = 20, so distance-limited samples should be cut on precision rather than apparent brightness.'
+    };
+    return by[d.topic] || 'The dataset covers ' + d.area.toLowerCase() + ' over ' + d.period.toLowerCase() + ', which is enough to answer that directly.';
+  }
+
+  send(text) {
+    const t = (text || '').trim();
+    if (!t || this.state.thinking) return;
+    let c = this.active();
+    if (c === this.draft) {
+      c = { id: 'c' + Date.now(), title: t.length > 46 ? t.slice(0, 46).trim() + '…' : t, when:'Now', messages: [] };
+      this.convos = [c, ...this.convos];
+      this.draft = { id:'draft', title:'New chat', when:'Now', messages:[] };
+      this.setState({ convoId: c.id });
+    }
+    c.messages = [...c.messages, { role:'user', text:t }];
+    this.setState({ chatInput:'', thinking:true });
+    clearTimeout(this._c);
+    this._c = setTimeout(() => {
+      const kind = this.classify(t);
+      let picks = kind === 'offtopic' ? [] : this.pickFor(t);
+      let text2;
+      if (kind === 'offtopic') {
+        text2 = 'That one is outside what I can help with — I only search and read the dataset index, so I can answer questions about data sources, coverage, licensing and what the numbers show. Ask me for data on a topic and I will find it.';
+      } else if (!picks.length) {
+        text2 = 'Nothing in the index covers that. The closest neighbouring collections are environmental monitoring and satellite-derived grids, but none of them record it directly. Try naming the phenomenon, the place and the period — for example “daily PM2.5 for European cities since 2015” — or widen the request and I will suggest proxies.';
+      } else if (kind === 'analytic') {
+        const a = picks[0];
+        picks = [a];
+        text2 = 'Answering from ' + a.title + ' (' + a.provider + '). ' + this.analysis(a);
+      } else {
+        const a = picks[0], n = picks.length === 1 ? 'One dataset' : (picks.length === 2 ? 'Two datasets' : 'Three datasets');
+        text2 = n + ' in the index fit that. ' + a.provider + ' is the closest match: ' + a.area.toLowerCase() + ', ' + a.period.toLowerCase() + ', released under ' + a.license + '. The rest trade coverage against resolution and licensing, so choose on whichever constraint binds you.';
+      }
+      c.messages = [...c.messages, { role:'ai', text:text2, ids: picks.map(d => d.id) }];
+      this.setState({ thinking:false });
+    }, 1000);
+  }
+
+  renderVals() {
+    const s = this.state, theme = this.theme();
+    const list = s.view === 'results' ? this.matches() : [];
+    const listSel = list[Math.min(s.sel, Math.max(list.length - 1, 0))] || null;
+    const sel = s.view === 'chat' ? (this.all.find(d => d.id === s.chatSel) || null) : listSel;
+    const av = i => this.avatars[i % this.avatars.length];
+
+    const sugPool = ['air quality', 'air quality sensors calibration', 'solar capacity', 'electricity generation by fuel', 'species occurrence records', 'crop yield by country', 'taxi trips new york', 'student assessment scores', 'clinical records icu', 'speech audio languages', 'llm prompts site:huggingface.co', 'housing prices', 'star catalogue parallax'];
+    const qLow = (s.query || '').toLowerCase().trim();
+    const suggestions = (qLow ? sugPool.filter(x => x.includes(qLow) && x !== qLow) : sugPool.slice(0, 4)).slice(0, 5)
+      .map(label => ({ label, icon: 'search', pick: () => this.run(label) }));
+
+    const chipDef = [
+      { key:'updated', base:'Last updated', opts:['Any time','Past year','Past 3 years','Past 5 years'] },
+      { key:'format', base:'Download format', opts:['Any format','CSV','JSON','Parquet','GeoJSON','NetCDF','GeoTIFF','FITS','API'] },
+      { key:'rights', base:'Usage rights', opts:['Any usage rights','Commercial use allowed','Non-commercial only'] },
+      { key:'topic', base:'Topic', opts:['Any topic','Agriculture','Astronomy','Biodiversity','Economics','Education','Energy','Environment','Health','Machine learning','Transportation'] }
+    ];
+    const chips = chipDef.map(c => {
+      const active = this.filters[c.key] !== this.defaults[c.key];
+      return {
+        key: c.key, label: active ? this.filters[c.key] : c.base, open: s.menu === c.key,
+        leadOn: active, arrowOn: true,
+        bg: active ? 'var(--sec-cont)' : 'transparent',
+        fg: active ? 'var(--on-sec-cont)' : 'var(--on-surf-var)',
+        border: active ? 'transparent' : 'var(--outline-var)',
+        toggle: () => this.setState({ menu: s.menu === c.key ? null : c.key, sortOpen:false }),
+        items: c.opts.map(o => ({ label:o, mark: this.filters[c.key] === o ? 'check' : '', pick: () => this.setFilter(c.key, o) }))
+      };
+    });
+    chips.push({
+      key:'free', label:'Free', open:false, leadOn: this.filters.free,
+      arrowOn:false, bg: this.filters.free ? 'var(--sec-cont)' : 'transparent',
+      fg: this.filters.free ? 'var(--on-sec-cont)' : 'var(--on-surf-var)',
+      border: this.filters.free ? 'transparent' : 'var(--outline-var)',
+      toggle: () => this.setFilter('free', !this.filters.free), items: []
+    });
+
+    const results = list.map((d, i) => {
+      const [ab, af] = av(this.all.indexOf(d));
+      const on = d === listSel;
+      return {
+        title: d.title, desc: d.desc, provider: d.provider, domain: d.domain,
+        initial: d.provider[0], avBg: ab, avFg: af,
+        bg: on ? 'var(--surf-2)' : 'transparent',
+        ring: on ? 'inset 0 0 0 2px var(--primary)' : 'none',
+        titleFg: on ? 'var(--primary)' : 'var(--on-surf)',
+        starFg: s.saved[d.id] ? 'var(--primary)' : 'var(--on-surf-var)',
+        starFill: s.saved[d.id] ? 1 : 0,
+        badges: [
+          { icon:'schedule', label:'Updated ' + d.updated },
+          { icon:'description', label: d.formats.slice(0, 2).join(' · ') }
+        ],
+        pick: () => this.setState({ sel:i, detailOpen:true, menu:null, srcOpen:false, descOpen:false, pvPage:0 }),
+        star: (e) => { e.stopPropagation(); const n = { ...s.saved }; n[d.id] = !n[d.id]; this.setState({ saved:n }); this.flash(n[d.id] ? 'Saved to your library' : 'Removed from your library'); }
+      };
+    });
+
+    const metaRows = sel ? [
+      ['Dataset updated', sel.updated], ['Provided by', sel.provider], ['Authors', sel.authors],
+      ['Area covered', sel.area], ['Time period', sel.period], ['Size', sel.size], ['License', sel.license]
+    ].map((r, i) => ({ k:r[0], v:r[1], bg: i % 2 ? 'var(--surface)' : 'transparent' })) : [];
+
+    const related = sel ? this.all.filter(d => d.topic === sel.topic && d.id !== sel.id).slice(0, 3).map(d => ({
+      title: d.title, provider: d.provider, updated: d.updated, license: d.license,
+      pick: () => { const idx = list.findIndex(x => x.id === d.id); if (idx >= 0) this.setState({ sel:idx, tab:'desc' }); else this.flash('Not in current results — clear filters to view'); }
+    })) : [];
+
+    const sortItems = ['Relevance','Most recent','Most cited'].map(o => ({
+      label:o, mark: s.sort === o ? 'check' : '', pick: () => this.setState({ sort:o, sortOpen:false, sel:0 })
+    }));
+
+    const thread = this.active().messages;
+    const citedIds = [];
+    thread.forEach(m => (m.ids || []).forEach(id => { if (citedIds.indexOf(id) < 0) citedIds.push(id); }));
+    const citedList = citedIds.map(id => {
+      const d = this.all.find(x => x.id === id);
+      return { title: d.title, domain: d.domain, initial: d.provider[0],
+        avBg: av(this.all.indexOf(d))[0], avFg: av(this.all.indexOf(d))[1], open: () => this.openDataset(id) };
+    });
+
+    const sourceRows = sel ? sel.sources.map((x, i) => ({
+      name: x.name, note: x.note, initial: x.name[0].toUpperCase(),
+      bg: av(i)[0], fg: av(i)[1], go: () => this.flash('Opening ' + x.name + ' in a new tab')
+    })) : [];
+
+    const pvSize = s.pvSize || 5;
+    const pvAll = sel && sel.preview ? sel.preview.data : [];
+    const pvPage = Math.min(s.pvPage || 0, Math.max(0, Math.ceil(pvAll.length / pvSize) - 1));
+    const pvStart = pvPage * pvSize;
+    const pvRows = pvAll.slice(pvStart, pvStart + pvSize);
+
+    const hasFilters = Object.keys(this.defaults).some(k => this.filters[k] !== this.defaults[k]);
+    const savedSel = sel && s.saved[sel.id];
+
+    const mode = s.preview || this.props.viewport || 'auto';
+    const narrow = mode === 'phone' || !!s.vpNarrow;
+
+    return {
+      appMode: mode,
+      tgBg: theme === 'dark' ? '#282a2c' : '#ffffff',
+      previewModes: [
+        { key:'auto', icon:'desktop_windows', label:'Desktop', title:'Fit to window' },
+        { key:'phone', icon:'smartphone', label:'Mobile', title:'Preview at 402px' }
+      ].map(p => ({
+        icon:p.icon, label:p.label, title:p.title,
+        bg: mode === p.key ? 'var(--sec-cont)' : 'transparent',
+        fg: mode === p.key ? 'var(--on-sec-cont)' : (theme === 'dark' ? '#c4c7c5' : '#444746'),
+        pick: () => this.setState({ preview: p.key, menu:null, sortOpen:false, drawer:false, histOpen:false })
+      })),
+      theme, seed: s.seed || this.props.seed || 'blue',
+      density: this.props.density || 'comfortable',
+      motion: this.props.expressive === false ? 'calm' : 'expressive',
+      themeIcon: theme === 'dark' ? 'light_mode' : 'dark_mode',
+      toggleTheme: () => this.setState({ theme: theme === 'dark' ? 'light' : 'dark' }),
+      isHome: s.view === 'home', isResults: s.view === 'results', isChat: s.view === 'chat',
+      goChat: () => this.setState({ view:'chat', focus:false, menu:null, sortOpen:false }),
+      newChat: () => { this.draft = { id:'draft', title:'New chat', when:'Now', messages:[] }; this.setState({ convoId:'draft', chatInput:'', thinking:false, chatSel:null, histOpen:false }); },
+      isDraft: (s.convoId || 'draft') === 'draft',
+      convos: this.convos.map(c => {
+        const on = c.id === s.convoId;
+        return { title: c.title, when: c.when, bg: on ? 'var(--sec-cont)' : 'transparent',
+          fg: on ? 'var(--on-sec-cont)' : 'var(--on-surf)',
+          sub: on ? 'var(--on-sec-cont)' : 'var(--on-surf-var)',
+          pick: () => this.setState({ convoId: c.id, chatSel:null, thinking:false, chatInput:'', histOpen:false }) };
+      }),
+      backToSearch: () => this.setState({ view: s.submitted ? 'results' : 'home' }),
+      chatEmpty: thread.length === 0 && !s.thinking,
+      thinking: s.thinking,
+      prompts: [
+        { icon:'raven', label:'Which open dataset has occurrence records for bird species in Europe?' },
+        { icon:'waves', label:'I need coral bleaching severity by reef since 1990.' },
+        { icon:'query_stats', label:'Which countries added the most solar capacity between 2015 and 2024?' },
+        { icon:'outdoor_grill', label:'What is the best way to cook a steak?' }
+      ].map(p => ({ ...p, pick: () => this.send(p.label) })),
+      messages: thread.map((m, mi) => ({
+        isUser: m.role === 'user', isAI: m.role === 'ai', text: m.text,
+        copy: () => this.flash('Answer copied to clipboard'),
+        up: () => this.flash('Thanks — feedback recorded'),
+        down: () => this.flash('Thanks — feedback recorded'),
+        cards: (m.ids || []).map((id, ci) => {
+          const d = this.all.find(x => x.id === id);
+          const why = ['Closest match', 'Wider coverage', 'Alternative source'][ci] || 'Also relevant';
+          return {
+            title: d.title, provider: d.provider, domain: d.domain, updated: d.updated,
+            license: d.license, formats: d.formats.slice(0, 3).join(' · '),
+            updatedLabel: 'Updated ' + d.updated,
+            why: why + ' — ' + d.desc.split('. ')[0].replace(/\.+$/, '') + '.',
+            initial: d.provider[0], avBg: av(this.all.indexOf(d))[0], avFg: av(this.all.indexOf(d))[1],
+            open: () => this.openDataset(id)
+          };
+        })
+      })),
+      chatInput: s.chatInput,
+      onChatInput: (e) => this.setState({ chatInput: e.target.value }),
+      onChatKey: (e) => { if (e.key === 'Enter') this.send(s.chatInput); },
+      onChatFocus: () => this.setState({ chatFocus:true }),
+      onChatBlur: () => this.setState({ chatFocus:false }),
+      sendChat: () => this.send(s.chatInput),
+      cbBorder: s.chatFocus ? 'var(--primary)' : 'transparent',
+      cbShadow: s.chatFocus ? 'var(--sh-2)' : 'none',
+      sendBg: s.chatInput.trim() ? 'var(--primary)' : 'var(--surf-4)',
+      sendFg: s.chatInput.trim() ? 'var(--on-primary)' : 'var(--on-surf-var)',
+      cited: citedList, noCited: citedList.length === 0,
+      goHome: () => this.setState({ view:'home', query:'', submitted:'', focus:false, detailOpen:false, histOpen:false }),
+      drawerOpen: s.drawer, openDrawer: () => this.setState({ drawer:true }), closeDrawer: () => this.setState({ drawer:false }),
+      drawerItems: [
+        { icon:'database', label:'Dataset Search', bg: s.view === 'chat' ? 'transparent' : 'var(--sec-cont)', fg: s.view === 'chat' ? 'var(--on-surf-var)' : 'var(--on-sec-cont)', go: () => this.setState({ view: s.submitted ? 'results' : 'home', drawer:false }) },
+        { icon:'auto_awesome', label:'Ask AI', bg: s.view === 'chat' ? 'var(--sec-cont)' : 'transparent', fg: s.view === 'chat' ? 'var(--on-sec-cont)' : 'var(--on-surf-var)', go: () => this.setState({ view:'chat', drawer:false }) },
+        { icon:'bookmark', label:'Saved datasets', bg:'transparent', fg:'var(--on-surf-var)' },
+        { icon:'help', label:'Help', bg:'transparent', fg:'var(--on-surf-var)' },
+        { icon:'feedback', label:'Send feedback', bg:'transparent', fg:'var(--on-surf-var)' }
+      ],
+      query: s.query,
+      onQuery: (e) => this.setState({ query: e.target.value }),
+      onKey: (e) => { if (e.key === 'Enter' && s.query.trim()) this.run(s.query.trim()); },
+      onFocus: () => this.setState({ focus:true }), onBlur: () => setTimeout(() => this.setState({ focus:false }), 120),
+      onClear: () => this.setState({ query:'' }),
+      onSubmit: () => { if (s.query.trim()) this.run(s.query.trim()); },
+      clearShow: s.query ? 'grid' : 'none',
+      sbBg: s.focus ? 'var(--surface)' : 'var(--surf-2)',
+      sbShadow: s.focus ? 'var(--sh-2)' : 'none',
+      sbBorder: s.focus ? 'var(--primary)' : 'transparent',
+      sugOpen: s.focus && suggestions.length > 0, suggestions,
+      tryChips: ['air quality','solar capacity','species occurrence records'].map(label => ({ label, pick: () => this.run(label) })),
+      languages: ['English','Deutsch','Español','Français','Italiano','日本語','한국어','Português','Русский','简体中文'].map(label => ({ label })),
+      footerLinks: ['Help','Privacy','Terms'].map(label => ({ label })),
+      chips, hasFilters,
+      clearFilters: () => { this.filters = { ...this.defaults }; this.setState({ menu:null, sel:0, detailOpen:false }); },
+      loading: s.loading,
+      skeletons: [1,2,3,4],
+      showList: !s.loading && list.length > 0,
+      isEmpty: !s.loading && list.length === 0,
+      results,
+      countLabel: list.length + (list.length === 1 ? ' dataset' : ' datasets') + (s.submitted ? ' for “' + s.submitted + '”' : ' in the index'),
+      sortLabel: s.sort, sortOpen: !!s.sortOpen, sortItems,
+      toggleSort: () => this.setState({ sortOpen: !s.sortOpen, menu:null }),
+      hasSel: !s.loading && !!listSel && (!narrow || s.detailOpen),
+      showListCol: !(narrow && s.detailOpen),
+      closeDetail: () => this.setState({ detailOpen:false, srcOpen:false, descOpen:false }),
+      historyOpen: !!s.histOpen,
+      openHistory: () => this.setState({ histOpen:true, menu:null, sortOpen:false }),
+      closeHistory: () => this.setState({ histOpen:false }),
+      chatThread: !(narrow && s.chatSel),
+      chatDetail: !!sel && s.view === 'chat',
+      chatList: !(!!sel && s.view === 'chat'),
+      chatMode: (s.chatSel && s.view === 'chat') ? 'detail' : 'list',
+      newChatBg: (s.convoId || 'draft') === 'draft' ? 'var(--sec-cont)' : 'var(--surf-2)',
+      newChatFg: (s.convoId || 'draft') === 'draft' ? 'var(--on-sec-cont)' : 'var(--on-surf)',
+      closeChatDetail: () => this.setState({ chatSel:null, descOpen:false, srcOpen:false }),
+      sel: sel ? {
+        title: sel.title, provider: sel.provider, domain: sel.domain, longDesc: sel.longDesc,
+        citations: sel.citations.toLocaleString(), initial: sel.provider[0],
+        avBg: av(this.all.indexOf(sel))[0], avFg: av(this.all.indexOf(sel))[1],
+        saveLabel: savedSel ? 'Saved' : 'Save', saveFill: savedSel ? 1 : 0,
+        saveFg: savedSel ? 'var(--primary)' : 'var(--on-surf)'
+      } : {},
+      descLong: !!sel && sel.longDesc.length > 320,
+      descClamp: (sel && sel.longDesc.length > 320 && !s.descOpen) ? '4' : 'unset',
+      descMax: (sel && sel.longDesc.length > 320 && !s.descOpen) ? '96px' : '1200px',
+      descLabel: s.descOpen ? 'Show less' : 'Show more',
+      descIcon: s.descOpen ? 'expand_less' : 'expand_more',
+      toggleDesc: () => this.setState({ descOpen: !s.descOpen }),
+      hasArea: !!(sel && sel.bbox),
+      bboxW: sel && sel.bbox ? sel.bbox.w : 0,
+      bboxE: sel && sel.bbox ? sel.bbox.e : 0,
+      bboxS: sel && sel.bbox ? sel.bbox.s : 0,
+      bboxN: sel && sel.bbox ? sel.bbox.n : 0,
+      areaNote: sel && sel.bbox ? sel.bbox.label : '',
+      bboxChips: sel && sel.bbox ? [
+        ['North', sel.bbox.n + '°'], ['South', sel.bbox.s + '°'],
+        ['West', sel.bbox.w + '°'], ['East', sel.bbox.e + '°']
+      ].map(([k, v]) => ({ k, v })) : [],
+      hasPreview: !!(sel && sel.preview),
+      previewCols: sel && sel.preview ? sel.preview.cols.map(() => 'auto').join(' ') : 'auto',
+      previewChips: sel && sel.preview ? [
+        { icon:'draft', label: sel.preview.file, bg:'var(--prim-cont)', fg:'var(--on-prim-cont)' },
+        { icon:'code_blocks', label: sel.preview.format, bg:'var(--surf-3)', fg:'var(--on-surf-var)' },
+        { icon:'hard_drive', label: sel.preview.size, bg:'var(--surf-3)', fg:'var(--on-surf-var)' },
+        { icon:'table', label: sel.preview.rows + ' rows × ' + sel.preview.cols.length + ' columns', bg:'var(--surf-3)', fg:'var(--on-surf-var)' }
+      ] : [],
+      previewNote: sel && sel.preview ? 'Rows ' + (pvStart + 1) + '–' + (pvStart + pvRows.length) + ' of ' + sel.preview.rows : '',
+      prevFg: pvPage > 0 ? 'var(--on-surf-var)' : 'var(--outline-var)',
+      nextFg: pvStart + pvSize < (sel && sel.preview ? sel.preview.data.length : 0) ? 'var(--on-surf-var)' : 'var(--outline-var)',
+      rppLabel: pvSize + ' rows',
+      rppOpen: !!s.rppOpen,
+      toggleRpp: () => this.setState({ rppOpen: !s.rppOpen, menu:null, sortOpen:false }),
+      rppItems: [5, 10, 15].map(n => ({
+        label: n + ' rows per page', mark: pvSize === n ? 'check' : '',
+        pick: () => this.setState({ pvSize:n, pvPage:0, rppOpen:false })
+      })),
+      prevPage: () => this.setState({ pvPage: Math.max(0, pvPage - 1) }),
+      nextPage: () => { if (sel && sel.preview && pvStart + pvSize < sel.preview.data.length) this.setState({ pvPage: pvPage + 1 }); },
+      previewCells: sel && sel.preview ? [
+        ...sel.preview.cols.map(c => ({ v:c, bg:'var(--surf-3)', fg:'var(--on-surf)', weight:600, align:'left', family:"'Roboto Flex',sans-serif" })),
+        ...pvRows.flatMap((row, ri) => row.map(cell => ({
+          v: cell, bg: ri % 2 ? 'var(--surface)' : 'transparent', fg:'var(--on-surf-var)', weight:400,
+          align: /^[\d,.]+$/.test(cell) ? 'right' : 'left',
+          family: /^[\d,.]+$/.test(cell) ? 'ui-monospace,SFMono-Regular,Menlo,monospace' : "'Roboto Flex',sans-serif"
+        })))
+      ] : [],
+      metaRows,
+      formatChips: sel ? sel.formats.map(label => ({ label })) : [],
+      sources: sourceRows,
+      sourcesShown: sel ? (s.srcOpen ? sourceRows : sourceRows.slice(0, 5)) : [],
+      sourcesHeading: sel ? (sel.sources.length > 1 ? 'AVAILABLE AT ' + sel.sources.length + ' SOURCES' : 'AVAILABLE AT 1 SOURCE') : 'SOURCES',
+      srcMore: !!sel && sel.sources.length > 5,
+      srcLabel: s.srcOpen ? 'Show fewer sources' : (sel ? 'Show all ' + sel.sources.length + ' sources' : ''),
+      srcIcon: s.srcOpen ? 'expand_less' : 'expand_more',
+      toggleSrc: () => this.setState({ srcOpen: !s.srcOpen }),
+      citation: sel ? sel.authors + ' (' + sel.year + '). ' + sel.title + ' [Data set]. ' + sel.provider + '. ' + sel.domain : '',
+      copyCite: () => this.flash('Citation copied to clipboard'),
+      share: () => this.flash('Link copied to clipboard'),
+      saveSel: () => { if (!sel) return; const n = { ...s.saved }; n[sel.id] = !n[sel.id]; this.setState({ saved:n }); this.flash(n[sel.id] ? 'Saved to your library' : 'Removed from your library'); },
+      related,
+      toast: s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>
